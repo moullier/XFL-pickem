@@ -14,13 +14,21 @@ $(document).ready(function() {
 });
 
 function getGroups() {
-  console.log("the button listener works, so that's nice");
   $.get("/api/user_members/" + loggedin_id).then(function(data) {
     console.log(data);
     $(".group-names").text(data);
   });
-
 }
 
-// Adding a click event listener to all elements with a class of "sidebarBtn"
+function getPicks() {
+  console.log("the button listener works, so that's nice");
+  $.get("/api/user_picks/" + loggedin_id).then(function(data) {
+    console.log(data);
+  })
+}
+
+// Adding a click event listener to group-btn
 $(document).on("click", "#group-btn", getGroups);
+
+// Adding a click event listener to picks-btn
+$(document).on("click", "#picks-btn", getPicks);

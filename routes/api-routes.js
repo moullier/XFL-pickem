@@ -72,21 +72,15 @@ module.exports = function(app) {
       console.log("/api/user_members on the server: ");
       console.log("user_id is " + user_id);
 
-      // Here we add an "include" property to our options in our findOne query
-      // We set the value to an array of the models we want to include in a left outer join
-      // In this case, just db.Post
       db.Member.findAll({
         where: {
           user_id: req.params.id
         },
         include: [db.Group]
       }).then(function(dbMember) {
-        console.log("**");
-        console.log(dbMember);
+        // console.log(dbMember);
         let resultList = [];
         dbMember.forEach(element => {
-          console.log("element.dataValues = ");
-          console.log(element.dataValues.Group.dataValues.name);
           resultList.push(element.dataValues.Group.dataValues.name);
         });
 
@@ -94,5 +88,49 @@ module.exports = function(app) {
         res.json(resultList);
       })
     }
-  })
+  });
+
+  // Route for getting all picks for a specific user
+  app.get("/api/user_picks/:id", function(req, res) {
+    console.log("hit the user_picks get route");
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+
+      let user_id = req.params.id;
+      console.log("/api/user_picks on the server: ");
+      console.log("user_id is " + user_id);
+
+      db.Pick.findAll({
+        include: [
+          {
+            model: db.Member, 
+            include: [
+                db.Group
+            ],
+            where: {
+              user_id: req.params.id
+            },
+          }
+        ]
+      }).then(function(dbPick) {
+        // console.log(dbPick);
+        // let resultList = [];
+        // dbPick.forEach(element => {
+        //   resultList.push(element.dataValues.Group.dataValues.name);
+        // });
+
+        // console.log(resultList);
+        res.json(dbPick);
+      })
+    }
+  });
+
+
+
+
+
+
+
 }
