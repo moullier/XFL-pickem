@@ -8,8 +8,8 @@ module.exports = function(app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     
-    console.log("** login** req.user on the server: ");
-    console.log(req.user);
+    //console.log("** login** req.user on the server: ");
+    //console.log(req.user);
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
@@ -49,8 +49,8 @@ module.exports = function(app) {
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
-      console.log("req.user on the server: ");
-      console.log(req.user);
+      // console.log("req.user on the server: ");
+      // console.log(req.user);
 
       res.json({
         email: req.user.email,
@@ -61,26 +61,38 @@ module.exports = function(app) {
   });
 
   // Route for getting member info about user (which groups they're in)
-  app.get("/api/user_members", function(req, res) {
+  app.get("/api/user_members/:id", function(req, res) {
+    console.log("hit the user_members get route");
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
 
+      let user_id = req.params.id;
       console.log("/api/user_members on the server: ");
+      console.log("user_id is " + user_id);
 
-      // this object should be the result
-      res.json({
-        email: req.user.email,
-        id: req.user.id,
-        display_name: req.user.display_name
-      });
+      // Here we add an "include" property to our options in our findOne query
+      // We set the value to an array of the models we want to include in a left outer join
+      // In this case, just db.Post
+      db.Member.findAll({
+        where: {
+          user_id: req.params.id
+        },
+        include: [db.Group]
+      }).then(function(dbMember) {
+        console.log("**");
+        console.log(dbMember);
+        let resultList = [];
+        dbMember.forEach(element => {
+          console.log("element.dataValues = ");
+          console.log(element.dataValues.Group.dataValues.name);
+          resultList.push(element.dataValues.Group.dataValues.name);
+        });
+
+        console.log(resultList);
+        res.json(resultList);
+      })
     }
-  });
-
-
-
-
-
-
-};
+  })
+}

@@ -3,11 +3,11 @@ module.exports = function(sequelize, DataTypes) {
         user_id: {
             type: DataTypes.INTEGER(10),
             allowNull: false,
-        },
-        group_id: {
-            type: DataTypes.INTEGER(10),
-            allowNull: false,
         }
+        // group_id: {
+        //     type: DataTypes.INTEGER(10),
+        //     allowNull: false,
+        // }
     });
 
     Member.associate = function(models) {
@@ -19,6 +19,12 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
           }
         });
+
+        Member.hasMany(models.Pick, {
+            onDelete: "cascade"
+        });
+
+
       };
 
 
