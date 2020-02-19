@@ -49,16 +49,15 @@ module.exports = function(app) {
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
-      // console.log("req.user on the server: ");
-      // console.log(req.user);
 
       res.json({
         email: req.user.email,
-        id: req.user.id,
-        display_name: req.user.display_name
+        id: req.user.id
       });
     }
   });
+
+  // GET ROUTES FOR ACCESSING THE DATABASE
 
   // Route for getting member info about user (which groups they're in)
   app.get("/api/user_members/:id", function(req, res) {
@@ -129,8 +128,66 @@ module.exports = function(app) {
 
 
 
+// POST ROUTES
+
+// add a new group
+// input is an object with a name value
+app.post("/api/group", function(req, res) {
+  console.log("post /api/groups/ route");
+  console.log(req.body);
+
+  db.Group.create(req.body).then(function(dbGroup) {
+    res.json(dbGroup);
+  });
+});
+
+// add a new group member
+// input is an object with "user_id" and "GroupId" keys
+app.post("/api/member", function(req, res) {
+  console.log("post /api/member/ route");
+  console.log(req.body);
+
+  db.Member.create(req.body).then(function(dbMember) {
+    res.json(dbMember);
+  });
+});
+
+// add a new pick
+// input is an object with "week", "game_number","prediction" and "MemberId" keys
+app.post("/api/pick", function(req, res) {
+  console.log("post /api/pick/ route");
+  console.log(req.body);
+
+  db.Pick.create(req.body).then(function(dbPick) {
+    res.json(dbPick);
+  });
+});
 
 
+// add a new result
+// input is an object with "week", "game_number", "winner", "winner_name", and "loser_name" keys
+app.post("/api/result", function(req, res) {
+  console.log("post /api/result/ route");
+  console.log(req.body);
 
+  db.Result.create(req.body).then(function(dbResult) {
+    res.json(dbResult);
+  });
+});
+
+
+// DELETE ROUTES
+
+app.delete("/api/delete_group/:id", function(req, res) {
+  console.log("Made it to delete group function");
+  
+  db.Group.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(dbPost) {
+    res.json(dbPost);
+  });
+});
 
 }

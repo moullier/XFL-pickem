@@ -24,6 +24,20 @@ function getPicks() {
   console.log("the button listener works, so that's nice");
   $.get("/api/user_picks/" + loggedin_id).then(function(data) {
     console.log(data);
+    let newList = $("<ul>");
+    data.forEach(element => {
+      let newLi = $("<li>");
+      if(element.prediction)
+        $(newLi).text(`Week ${element.week}, Game ${element.game_number}: Home winner`);
+      else
+        $(newLi).text(`Week ${element.week}, Game ${element.game_number}: Away winner`);
+
+      $(newList).append(newLi);
+    });
+
+    $("#picks-list").append("Picks");
+    $("#picks-list").append(newList);
+
   })
 }
 
