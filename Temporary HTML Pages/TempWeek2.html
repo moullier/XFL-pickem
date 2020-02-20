@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="margin-left: 50px;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +21,9 @@
         tr:nth-child(even) {
           background-color: #dddddd;
         }
+        c {
+        background-color: yellow;
+        }
         </style>
     <!-- End of straight borrowed from W3 Schools. -sam w -->
 </head>
@@ -30,13 +33,14 @@
     <br><br><br>
     <h1>Hello {{Instance Name}}!</h1>
     <h1>--this is the page for Week 2--</h1>
+    <h1 style="background-color: aquamarine;">BTW this is a completely seperate HTML file, though they look almost exactly the same. -sam</h1>
 
 <table>
     <tr>
-        <th>Game 1 (team A vs team C)</th>
-        <th>Game 2 (team B vs team D)</th> 
-        <th>Game 3 (team E vs team G)</th> 
-        <th>Game 4 (team F vs team H)</th> 
+        <th>Game 1 (team <c>A</c> vs team C)</th>
+        <th>Game 2 (team <c>B</c> vs team D)</th> 
+        <th>Game 3 (team <c>E</c> vs team G)</th> 
+        <th>Game 4 (team <c>F</c> vs team H)</th> 
     </tr>
     <tr>
         <td>Home team: team A</td>
