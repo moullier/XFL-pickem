@@ -1,8 +1,15 @@
 // Requiring path to so we can use relative routes to our HTML files
+<<<<<<< HEAD
 let path = require("path");
 
 // Requiring our custom middleware for checking if a user is logged in
 let isAuthenticated = require("../config/middleware/isAuthenticated");
+=======
+var path = require("path");
+
+// Requiring our custom middleware for checking if a user is logged in
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+>>>>>>> develop
 
 module.exports = function(app) {
 
@@ -34,6 +41,7 @@ module.exports = function(app) {
     res.render("games", {hbsObject})
 
     // res.sendFile(path.join(__dirname, "../public/members.html"));
+
   });
 
 };
