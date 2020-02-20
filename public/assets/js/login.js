@@ -3,7 +3,7 @@ $(document).ready(function() {
     let loginForm = $("form.login");
     let emailInput = $("input#email-input");
     let passwordInput = $("input#password-input");
-  
+
     // When the form is submitted, we validate there's an email and password entered
     loginForm.on("submit", function(event) {
       event.preventDefault();
@@ -11,6 +11,8 @@ $(document).ready(function() {
         email: emailInput.val().trim(),
         password: passwordInput.val().trim()
       };
+      
+      console.log(userData);
   
       if (!userData.email || !userData.password) {
         return;
@@ -24,11 +26,13 @@ $(document).ready(function() {
   
     // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
     function loginUser(email, password) {
+      console.log('hit loginUser')
       $.post("/api/login", {
         email: email,
         password: password
       })
         .then(function() {
+          console.log("from public/login.js page - login credentials have been sent.");
           window.location.replace("/members");
           // If there's an error, log the error
         })

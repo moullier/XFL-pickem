@@ -2,16 +2,33 @@
 let db = require("../models");
 let passport = require("../config/passport");
 
+/// Below is just an example for refrence //
+
+// router.get("/", function (req, res) {
+//   burger.selectAll(function (data) {
+//       let hbsObject = {
+//           burger: data
+//       };
+//       console.log("Below is the hbsObject log")
+//       console.log(hbsObject);
+//       // console.log(hbsObject.burger[0].name);
+//       res.render("index", hbsObject);
+//   })
+// });
+
+
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     // Sending back a password, even a hashed password, isn't a good idea
+
     res.json({
-      email: req.user.email,
+      email: req.user.email,  ///this is original code - commented out to experiment ///
       id: req.user.id
     });
+
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -23,6 +40,7 @@ module.exports = function(app) {
       password: req.body.password
     })
       .then(function() {
+        console.log("user had been created");
         res.redirect(307, "/api/login");
       })
       .catch(function(err) {
