@@ -3,68 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- This styling is straight borrowed from W3 Schools -Sam W. -->
-    <style>
-        table {
-          font-family: arial, sans-serif;
-          border-collapse: collapse;
-          width: 100%;
-        }
-        
-        td, th {
-          border: 1px solid #dddddd;
-          text-align: left;
-          padding: 8px;
-        }
-        
-        tr:nth-child(even) {
-          background-color: #dddddd;
-        }
-        c {
-        background-color: yellow;
-        }
-        </style>
-    <!-- End of straight borrowed from W3 Schools. -sam w -->
+    <!-- Linking in our own CSS style sheet: -->
+    <link type="text/css" rel="stylesheet" href="./css/TempHtmlFilesStyle.css"/>
+    
+    <title>Week 2 Picks</title>
 </head>
 <body>
     <h4>Temporary HTML of the "Week 2 page"</h4>
     <h1>--------------------</h1>
-    <br><br><br>
-    <h1>Hello {{Instance Name}}!</h1>
+    <h1>Hello <members>{{Member Name}}</members>!</h1>
     <h1>--this is the page for Week 2--</h1>
-    <h1 style="background-color: aquamarine;">BTW this is a completely seperate HTML file, though they look almost exactly the same. -sam</h1>
 
 <table>
     <tr>
-        <th>Game 1 (team <c>A</c> vs team C)</th>
-        <th>Game 2 (team <c>B</c> vs team D)</th> 
-        <th>Game 3 (team <c>E</c> vs team G)</th> 
-        <th>Game 4 (team <c>F</c> vs team H)</th> 
+        <th>Game 1:<br> NY - New York Guardians <!--(away)--><br> at DC  - Washington D.C. Defenders <!--(home)--></th>
+        <th>Game 2:<br> TB - Tampa Bay Vipers <!--(away)--><br> at SEA - Seattle Dragons <!--(home)--></th> 
+        <th>Game 3:<br> DAL - Dallas Renegades <!--(away)--><br> at LA - Los Angeles Wildcats <!--(home)--></th> 
+        <th>Game 4:<br> STL - St Louis BattleHawks <!--(away)--><br> at HOU - Houstin Roughnecks <!--(home)--></th> 
     </tr>
     <tr>
-        <td>Home team: team A</td>
-        <td>Home team: team B</td>
-        <td>Home team: team E</td>        
-        <td>Home team: team F</td>
+        <td>Away team:<br> NY - New York Guardians</td>
+        <td>Away team:<br> TB - Tampa Bay Vipers</td>
+        <td>Away team:<br> DAL - Dallas Renegades</td>
+        <td>Away team:<br> STL - St Louis BattleHawks</td>
+    </tr>    
+    <tr>
+        <td>Home team:<br> DC  - Washington D.C. Defenders</td>
+        <td>Home team:<br> SEA - Seattle Dragons</td>
+        <td>Home team:<br> LA - Los Angeles Wildcats</td>        
+        <td>Home team:<br> HOU - Houstin Roughnecks</td>
     </tr>
     <tr>
-        <td>Away team: team C</td>
-        <td>Away team: team D</td>
-        <td>Away team: team G</td>
-        <td>Away team: team H</td>
+        <td>Game day and time:<br> --game already completed on Feb 15--</td>
+        <td>Game day and time:<br> --game already completed on Feb 15--</td>
+        <td>Game day and time:<br> --game already completed on Feb 16--</td>        
+        <td>Game day and time:<br> --game already completed on Feb 16--</td>    
     </tr>
     <tr>
-<td>Your pick: __ <br>{{this will do a POST request to the database}}</td>
-<td>Your pick: __ <br>{{this will do a POST request to the database}}</td>
-<td>Your pick: __ <br>{{this will do a POST request to the database}}</td>        
-<td>Your pick: __ <br>{{this will do a POST request to the database}}</td>
+        <td><picks>Your pick: __ {{POST to Picks}}</picks></td>
+        <td><picks>Your pick: __ {{POST to Picks}}</picks></td>
+        <td><picks>Your pick: __ {{POST to Picks}}</picks></td>        
+        <td><picks>Your pick: __ {{POST to Picks}}</picks></td>
+    </tr>
+    <tr>
+        <td>Winner: <results>
+            DC  - Washington D.C. Defenders <!-- NY-DC 0-27 -->
+        </results></td>
+        <td>Winner: <results>
+            SEA - Seattle Dragons <!-- TB-SEA 9-17 -->
+        </results></td>
+        <td>Winner: <results>
+            DAL - Dallas Renegades <!-- DAL-LA 25-18 -->
+        </results></td>
+        <td>Winner: <results>
+            HOU - Houstin Roughnecks <!-- STL-HOU 24-28 -->
+        </results></td>        
     </tr>
 
 </table>
 
 
-    <br><button style="font-size: larger;"> <a href="./TempInstance1Page.html">go back to instance 1 page</a></button>
+    <br><button style="font-size: larger;"> <a href="./TempMember1Page.html">go back to Member 1 page</a></button>
     <br><button style="font-size: larger;"> <a href="./TempWelcomePage.html">go back to welcome page</a></button>
     <br><button style="font-size: larger;"> <a href="./TempLogin.html">go back to login page</a></button>
 </body>
