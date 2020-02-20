@@ -1,26 +1,7 @@
 // Requiring our models and passport as we've configured it
-<<<<<<< HEAD
+
 let db = require("../models");
 let passport = require("../config/passport");
-
-/// Below is just an example for refrence //
-
-// router.get("/", function (req, res) {
-//   burger.selectAll(function (data) {
-//       let hbsObject = {
-//           burger: data
-//       };
-//       console.log("Below is the hbsObject log")
-//       console.log(hbsObject);
-//       // console.log(hbsObject.burger[0].name);
-//       res.render("index", hbsObject);
-//   })
-// });
-
-=======
-var db = require("../models");
-var passport = require("../config/passport");
->>>>>>> develop
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
