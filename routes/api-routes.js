@@ -1,12 +1,33 @@
 // Requiring our models and passport as we've configured it
+<<<<<<< HEAD
+let db = require("../models");
+let passport = require("../config/passport");
+
+/// Below is just an example for refrence //
+
+// router.get("/", function (req, res) {
+//   burger.selectAll(function (data) {
+//       let hbsObject = {
+//           burger: data
+//       };
+//       console.log("Below is the hbsObject log")
+//       console.log(hbsObject);
+//       // console.log(hbsObject.burger[0].name);
+//       res.render("index", hbsObject);
+//   })
+// });
+
+=======
 var db = require("../models");
 var passport = require("../config/passport");
+>>>>>>> develop
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
+
     
     //console.log("** login** req.user on the server: ");
     //console.log(req.user);
@@ -24,6 +45,7 @@ module.exports = function(app) {
   app.post("/api/signup", function(req, res) {
     db.User.create({
       email: req.body.email,
+
       password: req.body.password,
       display_name: null
     })
