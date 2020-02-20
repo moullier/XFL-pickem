@@ -1,9 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
     let Member = sequelize.define("Member", {
-        user_id: {
-            type: DataTypes.INTEGER(10),
-            allowNull: false,
-        }
+        // user_id: {
+        //     type: DataTypes.INTEGER(10),
+        //     allowNull: false,
+        // }
         // group_id: {
         //     type: DataTypes.INTEGER(10),
         //     allowNull: false,
@@ -19,6 +19,12 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
           }
         });
+
+        Member.belongsTo(models.User, {
+            foreignKey: {
+              allowNull: false
+            }
+          });
 
         Member.hasMany(models.Pick, {
             onDelete: "cascade"

@@ -5,7 +5,7 @@ $(document).ready(function() {
   // and updates the HTML on the page
   $.get("/api/user_data").then(function(data) {
     $(".member-email").text(data.email);
-    $(".member-name").text(data.display_name);
+    $(".member-name").text(data.id);
     loggedin_id = data.id;
     console.log(loggedin_id);
     console.log(typeof(loggedin_id));
@@ -21,7 +21,6 @@ function getGroups() {
 }
 
 function getPicks() {
-  console.log("the button listener works, so that's nice");
   $.get("/api/user_picks/" + loggedin_id).then(function(data) {
     console.log(data);
     let newList = $("<ul>");
@@ -41,8 +40,17 @@ function getPicks() {
   })
 }
 
+
+function setName() {
+  let newDisplayName = $("#name_field").val().trim();
+  console.log(newDisplayName);
+}
+
 // Adding a click event listener to group-btn
 $(document).on("click", "#group-btn", getGroups);
 
 // Adding a click event listener to picks-btn
 $(document).on("click", "#picks-btn", getPicks);
+
+// Adding a click event listener to picks-btn
+$(document).on("click", "#displayname-btn", setName);

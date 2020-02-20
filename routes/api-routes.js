@@ -73,7 +73,7 @@ module.exports = function(app) {
 
       db.Member.findAll({
         where: {
-          user_id: req.params.id
+          UserId: req.params.id
         },
         include: [db.Group]
       }).then(function(dbMember) {
@@ -109,7 +109,7 @@ module.exports = function(app) {
                 db.Group
             ],
             where: {
-              user_id: req.params.id
+              UserId: req.params.id
             },
           }
         ]
@@ -125,6 +125,44 @@ module.exports = function(app) {
       })
     }
   });
+
+
+// Get route to return all users in a group
+app.get("/api/group_users/:id", function(req, res) {
+  console.log("hit the group_users get route");
+  if (!req.user) {
+    // The user is not logged in, send back an empty object
+    res.json({});
+  } else {
+
+    let group_id = req.params.id;
+    console.log("/api/group_users on the server: ");
+    console.log("group_id is " + group_id);
+
+    db.User.findAll({
+      include: [
+        {
+          model: db.Member, 
+          include: [
+              db.Group
+          ],
+          where: {
+            GroupId: group_id
+          },
+        }
+      ]
+    }).then(function(dbPick) {
+      // console.log(dbPick);
+      // let resultList = [];
+      // dbPick.forEach(element => {
+      //   resultList.push(element.dataValues.Group.dataValues.name);
+      // });
+
+      // console.log(resultList);
+      res.json(dbPick);
+    })
+  }
+});
 
 
 
@@ -190,4 +228,18 @@ app.delete("/api/delete_group/:id", function(req, res) {
   });
 });
 
+
+
+// PUT ROUTES
+
+app.put("/api/update_user_dn/:id", function(req, res) {
+
+db.User.save({
+  where: {
+    id: req.params.id
+  }
+})
+
+
+  })
 }

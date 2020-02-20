@@ -12,10 +12,10 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    // display_name: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false
-    // },
+    display_name: {
+      type: DataTypes.STRING,
+      // allowNull: false
+    },
     // The password cannot be null
     password: {
       type: DataTypes.STRING,
@@ -31,5 +31,14 @@ module.exports = function(sequelize, DataTypes) {
   User.addHook("beforeCreate", function(user) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
+
+  User.associate = function(models) {
+    // Associating Group with Members
+    // When an Group is deleted, also delete any associated Members
+    User.hasMany(models.Member, {
+      onDelete: "cascade"
+    });
+  };
+
   return User;
 };

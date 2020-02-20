@@ -27,29 +27,32 @@ insert into `users` (email, `password`, createdAt, updatedAt) values ("bush@test
 --     group_id int(10 not null)
 -- )
 
-insert into members (user_id, group_id, createdAt, updatedAt) values (7, 1, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (8, 1, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (9, 1, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (10, 1, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (8, 1, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (9, 1, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (10, 1, now(), now());
 
-insert into members (user_id, group_id, createdAt, updatedAt) values (1, 2, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (2, 2, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (1, 2, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (2, 2, now(), now());
 
-insert into members (user_id, group_id, createdAt, updatedAt) values (3, 3, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (4, 3, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (5, 3, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (3, 3, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (4, 3, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (5, 3, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (16, 3, now(), now());
 
-insert into members (user_id, group_id, createdAt, updatedAt) values (7, 4, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (8, 4, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (9, 4, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (10, 4, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (11, 4, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (12, 4, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (7, 4, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (8, 4, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (9, 4, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (10, 4, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (11, 4, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (12, 4, now(), now());
 
-insert into members (user_id, group_id, createdAt, updatedAt) values (12, 5, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (13, 5, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (14, 5, now(), now());
-insert into members (user_id, group_id, createdAt, updatedAt) values (15, 5, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (12, 5, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (13, 5, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (14, 5, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (15, 5, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (16, 5, now(), now());
+
+insert into members (UserId, GroupId, createdAt, updatedAt) values (7, 1, now(), now());
 
 -- adding week 1 picks for steve@test.com (password: test)
 insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (16, 1, 1, true, now(), now());
