@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- This styling is straight borrowed from W3 Schools -Sam W. -->
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+    <!-- End of straight borrowed from W3 Schools. -sam w -->
+</head>
+<body>
+    <h4>Temporary HTML of the "Week 2 page"</h4>
+    <h1>--------------------</h1>
+    <br><br><br>
+    <h1>Hello {{Instance Name}}!</h1>
+    <h1>--this is the page for Week 2--</h1>
+
+<table>
+    <tr>
+        <th>Game 1 (team A vs team C)</th>
+        <th>Game 2 (team B vs team D)</th> 
+        <th>Game 3 (team E vs team G)</th> 
+        <th>Game 4 (team F vs team H)</th> 
+    </tr>
+    <tr>
+        <td>Home team: team A</td>
+        <td>Home team: team B</td>
+        <td>Home team: team E</td>        
+        <td>Home team: team F</td>
+    </tr>
+    <tr>
+        <td>Away team: team C</td>
+        <td>Away team: team D</td>
+        <td>Away team: team G</td>
+        <td>Away team: team H</td>
+    </tr>
+    <tr>
+<td>Your pick: __ <br>{{this will do a POST request to the database}}</td>
+<td>Your pick: __ <br>{{this will do a POST request to the database}}</td>
+<td>Your pick: __ <br>{{this will do a POST request to the database}}</td>        
+<td>Your pick: __ <br>{{this will do a POST request to the database}}</td>
+    </tr>
+
+</table>
+
+
+    <br><button style="font-size: larger;"> <a href="./TempInstance1Page.html">go back to instance 1 page</a></button>
+    <br><button style="font-size: larger;"> <a href="./TempWelcomePage.html">go back to welcome page</a></button>
+    <br><button style="font-size: larger;"> <a href="./TempLogin.html">go back to login page</a></button>
+</body>
+</html>
