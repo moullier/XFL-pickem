@@ -28,4 +28,17 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
+  app.get("/welcome", function(req, res) {
+    // If the user already has an account send them to the welcome page
+    if (req.user) {
+      res.redirect("/welcome");
+    }
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
+
+
+
+
+
+
 };
