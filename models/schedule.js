@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    let Result = sequelize.define("Result", {
+    let Schedule = sequelize.define("Schedule", {
         week: {
             type: DataTypes.INTEGER(10),
             allowNull: false
@@ -13,16 +13,20 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        winner_name: {
+        home_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        loser_name: {
+        away_name: {
             type: DataTypes.STRING,
             allowNull: false            
+        },
+        game_occurred: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
         }
     });
 
-    return Result;
+    return Schedule;
   };
   

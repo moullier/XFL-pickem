@@ -55,7 +55,8 @@ module.exports = function(app) {
 
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
+        display_name: req.user.display_name
       });
     }
   });
@@ -81,17 +82,13 @@ module.exports = function(app) {
         include: [db.Group]
       }).then(function(dbMember) {
         // console.log(dbMember);
-        let resultList = [];
-        dbMember.forEach(element => {
-          resultList.push(element.dataValues.Group.dataValues.name);
-        });
-        console.log(resultList);
-        res.json(resultList);
-        // Below is code added by Lynn ///
-        let groupObject = {
-          group: [reslutList]
-        };
-        res.render("members", {groupObject})
+        // let resultList = [];
+        // dbMember.forEach(element => {
+        //   resultList.push(element.dataValues.Group.dataValues.name);
+        // });
+
+        console.log(dbMember);
+        res.json(dbMember);
       })
     }
   });
@@ -121,13 +118,6 @@ module.exports = function(app) {
           }
         ]
       }).then(function(dbPick) {
-        // console.log(dbPick);
-        // let resultList = [];
-        // dbPick.forEach(element => {
-        //   resultList.push(element.dataValues.Group.dataValues.name);
-        // });
-
-        // console.log(resultList);
         res.json(dbPick);
       })
     }
@@ -237,18 +227,19 @@ app.delete("/api/delete_group/:id", function(req, res) {
 
 
 
-// PUT ROUTES
+  // PUT ROUTES
 
-app.put("/api/update_user_dn/:id", function(req, res) {
+  app.put("/api/update_user_dn/:id", function(req, res) {
 
-db.User.save({
-  where: {
-    id: req.params.id
-  }
-})
-
-
-  })
+    console.log("The user id being modified is: " + req.params.id);
+    console.log("req.body" + req.body);
+    console.log("req.body.display_name " + req.body.display_name);
+    db.User.update({ display_name: req.body.display_name }, {
+      where: {
+        id: req.params.id
+      }
+    });
+  });
 }
 
 
