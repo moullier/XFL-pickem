@@ -25,17 +25,29 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
+/// Lynn's Code Below /////
+
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, function(req, res) {
-    let hbsObject = {
-      email: req.user.email
+
+    console.log("/members html route hit here!");
+    let membersObject = {
+      email: req.user.email,
+      displayname: req.user.display_name
     };
-    console.log(hbsObject);
-    res.render("games", {hbsObject})
+    console.log(membersObject);
+    console.log(membersObject.displayname);
+    res.render("members", {membersObject});
 
     // res.sendFile(path.join(__dirname, "../public/members.html"));
-
   });
 
+// Route to redirct user to page to create new group.  Add new league button on members page //
+app.get("/api/new_group", function(req,res) {
+  res.render("groups", {});
+});
+
+
 };
+

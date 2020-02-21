@@ -26,9 +26,8 @@ module.exports = function(app) {
   app.post("/api/signup", function(req, res) {
     db.User.create({
       email: req.body.email,
-
       password: req.body.password,
-      display_name: null
+      display_name: req.body.display_name
     })
       .then(function() {
         res.redirect(307, "/api/login");
@@ -43,6 +42,7 @@ module.exports = function(app) {
     req.logout();
     res.redirect("/");
   });
+  
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
@@ -85,9 +85,13 @@ module.exports = function(app) {
         dbMember.forEach(element => {
           resultList.push(element.dataValues.Group.dataValues.name);
         });
-
         console.log(resultList);
         res.json(resultList);
+        // Below is code added by Lynn ///
+        let groupObject = {
+          group: [reslutList]
+        };
+        res.render("members", {groupObject})
       })
     }
   });
@@ -246,3 +250,5 @@ db.User.save({
 
   })
 }
+
+
