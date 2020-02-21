@@ -36,6 +36,7 @@ $(document).ready(function() {
 
 function getGroups() {
   $.get("/api/user_members/" + loggedin_id).then(function(data) {
+    console.log("below is .get /api/user_members data return");
     console.log(data);
     $(".group-names").text(data);
   });
@@ -93,3 +94,13 @@ $(document).on("click", "#picks-btn", getPicks);
 
 // Adding a click event listener to picks-btn
 $(document).on("click", "#displayname-btn", setName);
+
+//Lynn's code below ///
+
+$(document).on("click", "#newGroup-btn", function() {
+  console.log("new group button is working!");
+  $.get("api/new_group", function(req) {
+    window.location = "api/new_group";
+    console.log("get request sent to redirect to create league page")
+  })
+})

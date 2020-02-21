@@ -1,0 +1,49 @@
+/* This styling is straight borrowed from W3 Schools.
+    It is being used to make the Week1/2/3/4 tables on the pages to not look like total crap.
+     -Sam W. */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+/* End of straight borrowed from W3 Schools. -sam w */
+
+
+/* So to try and simplify how I'll mark what will be replaced by Handlebars {{__}} stuff I am going to throw those elements into basically their own div's but under the name of whichever table they will come from. Making them inline will keep them from causing line breaks when rendered on the HTML, and of course the background colors will coorespond to their specific database tables. -sam w.*/
+users {
+    background-color: #f7ff0082; 
+    display: inline
+}
+
+groups {
+    background-color: #2fff00b0; 
+    display: inline
+}
+
+members {
+    background-color: #ff000070; 
+    display: inline
+}
+
+picks {
+    background-color: #0000ff99; 
+    display: inline
+}
+
+results {
+    background-color: #ff9d00b0; 
+    display: inline
+}
+/* end of styling for the soon to be replaced by Handlebars things. -sam w */
+
+
