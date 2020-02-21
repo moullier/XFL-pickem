@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     display_name: {
       type: DataTypes.STRING,
-      // allowNull: false
+      allowNull: false
     },
     // The password cannot be null
     password: {
