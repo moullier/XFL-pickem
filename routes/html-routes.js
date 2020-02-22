@@ -43,11 +43,16 @@ module.exports = function(app) {
     // res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
-// Route to redirct user to page to create new group.  Add new league button on members page //
-app.get("/api/new_group", function(req,res) {
-  res.render("groups", {});
-});
+  // Route to redirct user to page to create new group.  Add new league button on members page //
+  app.get("/groups", function(req,res) {
+    res.render("groups", {});
+  });
 
+  // Route to load picks page -- we could pass in the week here and preload the requested
+  // (or current?) week possibly?
+  app.get("/picks", function(req,res) {
+    res.render("picks", {});
+  });
 
 };
 

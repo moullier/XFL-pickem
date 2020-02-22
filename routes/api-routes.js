@@ -162,6 +162,25 @@ app.get("/api/group_users/:id", function(req, res) {
 });
 
 
+// route to return a specific week's schedule
+app.get("/api/week_schedule/:week", function(req, res) {
+
+  console.log("hit /api/week_schedule, week is " + req.params.week);
+
+  db.Schedule.findAll({
+    where: {
+      week: req.params.week
+    }
+  }).then(function(dbSchedule) {
+
+    console.log(dbSchedule);
+    res.json(dbSchedule);
+  })
+
+});
+
+
+
 
 // POST ROUTES
 
