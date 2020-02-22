@@ -19,12 +19,17 @@ $(document).ready(function() {
 
     // get groups
     $.get("/api/user_members/" + loggedin_id).then(function(data) {
+      console.log("************")
       console.log(data);
 
       let newList = $("<ul>");
       data.forEach(element => {
         let newGroup = $("<li>");
-        newGroup.text(element.Group.name);
+        let newSpan = $("<span>");
+        newSpan.text(element.Group.name);
+        newSpan.addClass("groupText");
+        newSpan.attr("gid", element.GroupId)
+        newGroup.append(newSpan);
         newList.append(newGroup);
       });
 
@@ -101,6 +106,16 @@ $(document).on("click", "#makePicks-btn", function() {
   console.log("makePicks button is working!");
   $.get("/picks", function(req) {
     window.location = "/picks";
+    console.log("get request sent to redirect to create picks page")
+  });
+});
+
+
+$(document).on("click", ".groupText", function() {
+
+  let groupId = $(this).attr("gid")
+  $.get("/picks/" + groupId, function(req) {
+    window.location = "/picks/" + groupId;
     console.log("get request sent to redirect to create picks page")
   });
 });

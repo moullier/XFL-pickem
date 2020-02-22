@@ -63,6 +63,23 @@ module.exports = function(app) {
 
   // GET ROUTES FOR ACCESSING THE DATABASE
 
+  app.get("/api/getGroupbyID/:gid", function(req, res) {
+
+    console.log("req.params.gid = " + req.params.gid);
+
+    db.Group.findOne({
+      where: {
+        id: req.params.gid
+      }
+    }).then(function(dbGroup) {
+      console.log(dbGroup);
+      res.json(dbGroup);
+    })
+
+  });
+
+
+
   // Route for getting member info about user (which groups they're in)
   app.get("/api/user_members/:id", function(req, res) {
     console.log("hit the user_members get route");
@@ -92,6 +109,7 @@ module.exports = function(app) {
       })
     }
   });
+
 
   // Route for getting all picks for a specific user
   app.get("/api/user_picks/:id", function(req, res) {

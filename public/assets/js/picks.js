@@ -7,6 +7,15 @@ $(document).ready(function() {
     $("#weekDiv").hide();
 
     console.log("picksEntered = " + picksEntered);
+
+    let groupID = $("#groupTitle").attr("value");
+//    console.log("GROUP ID IS " + groupID);
+
+    $.get("/api/getGroupbyID/" + groupID).then(function(data) {
+        console.log(data.name);
+        $("#groupTitle").text(data.name);
+    });
+
 });
 
 $(document).on("click", ".dropdown-item", dropdownClicked);
@@ -43,8 +52,11 @@ function resetPage() {
     $("#weekTitle").text("Week #" + current_week);
 
     picksEntered = [undefined, undefined, undefined, undefined];
+    console.log("picksEntered = ");
+    console.log(picksEntered);
 
-    for(let i = 0; i < 4; i++) {
+
+    for(let i = 1; i < 5; i++) {
         let pickString = "#gm" + i + "pick";
         $(pickString).text("");
     }
