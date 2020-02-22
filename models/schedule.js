@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
         // true = home team won, false = away team won
         winner: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull: true
         },
         home_name: {
             type: DataTypes.STRING,

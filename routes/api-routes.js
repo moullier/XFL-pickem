@@ -63,6 +63,23 @@ module.exports = function(app) {
 
   // GET ROUTES FOR ACCESSING THE DATABASE
 
+  app.get("/api/getGroupbyID/:gid", function(req, res) {
+
+    console.log("req.params.gid = " + req.params.gid);
+
+    db.Group.findOne({
+      where: {
+        id: req.params.gid
+      }
+    }).then(function(dbGroup) {
+      console.log(dbGroup);
+      res.json(dbGroup);
+    })
+
+  });
+
+
+
   // Route for getting member info about user (which groups they're in)
   app.get("/api/user_members/:id", function(req, res) {
     console.log("hit the user_members get route");
@@ -92,6 +109,7 @@ module.exports = function(app) {
       })
     }
   });
+
 
   // Route for getting all picks for a specific user
   app.get("/api/user_picks/:id", function(req, res) {
@@ -160,6 +178,25 @@ app.get("/api/group_users/:id", function(req, res) {
     })
   }
 });
+
+
+// route to return a specific week's schedule
+app.get("/api/week_schedule/:week", function(req, res) {
+
+  console.log("hit /api/week_schedule, week is " + req.params.week);
+
+  db.Schedule.findAll({
+    where: {
+      week: req.params.week
+    }
+  }).then(function(dbSchedule) {
+
+    console.log(dbSchedule);
+    res.json(dbSchedule);
+  })
+
+});
+
 
 
 

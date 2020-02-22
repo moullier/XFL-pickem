@@ -28,9 +28,9 @@ insert into `users` (email, `password`, createdAt, updatedAt) values ("bush@test
 --     group_id int(10 not null)
 -- )
 
-insert into members (UserId, GroupId, createdAt, updatedAt) values (8, 1, now(), now());
-insert into members (UserId, GroupId, createdAt, updatedAt) values (9, 1, now(), now());
-insert into members (UserId, GroupId, createdAt, updatedAt) values (10, 1, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (1, 1, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (2, 1, now(), now());
+insert into members (UserId, GroupId, createdAt, updatedAt) values (3, 1, now(), now());
 
 insert into members (UserId, GroupId, createdAt, updatedAt) values (1, 2, now(), now());
 insert into members (UserId, GroupId, createdAt, updatedAt) values (2, 2, now(), now());
