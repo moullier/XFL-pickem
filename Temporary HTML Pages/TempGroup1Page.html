@@ -11,45 +11,132 @@
 <body>
     <h4>Temporary HTML Group Page</h4>
     <h1>-------------------------------</h1>
+<h1>Welcome to <groups>{{Group}}</groups>!</h1>
+    <h2>For both tables below, they will be populated with a new row for each member in a group.</h2>
 
-    <h2>The table below will be populated each row at a time for each member in a group.</h2>
-    <table>
-        <tr>
-            <th>These are the column headers. For example:<br>Member name:</th>
-            <th>These are the column headers. For example:<br>Total score:</th> 
-            <th>These are the column headers. For example:<br>something... Week 1 score?</th> 
-            <th>These are the column headers. For example:<br>something... Week 2 score?...etc?</th> 
-        </tr>
+<table style="width: 60%;">
+    <tr>
+        <th>Member name:</th>
+        <th>Total score:</th>  
+    </tr>
+    <!-- So the row below would be created for each member in a group. Rendered and therefore repeated each time.-->
+    <tr>
+        <td><members>{{MemberName1}}</members></td>
+        <td><members>{{10 (total score)}}</members></td>
+                <!-- Is the value above from the Picks table? Members table? -->
+    </tr>
+    <!-- end of rendered and repeated section. -->
 
-        <!-- So the row below would be created for each member in a group. Rendered and therefore repeated each time.-->
-        <tr>
-            <td><members>{{MemberName1}}</members></td>
-            <td><picks>{{15}}</picks></td>
-                    <!-- Is the value above, will it be from the Picks table? Members table? -->
-            <td><picks>{{1}}</picks></td>
-            <td><picks>{{2}}</picks></td>
-        </tr>
-        <!-- end of rendered and repeated section. -->
+    <!-- ----- I made two more copies of the <tr> above so that we can visually see what it might look like. -->
+    <tr>
+        <td> <members>{{MemberName2}}</members> </td>
+        <td> <members>{{9}}</members> </td>
+    </tr>
+    <tr>
+        <td> <members>{{MemberName3}}</members> </td>
+        <td> <members>{{13}}</members> </td>
+    </tr>
+    <tr>
+        <td> <members>{{MemberName4}}</members> </td>
+        <td> <members>{{18}}</members> </td>
+    </tr>
+</table>
+<br>
+<table>
+<tr>
+    <th>Individual Weekly Results:</th>
+    <th>Week 1:</th>
+    <th>Week 2:</th>
+    <th>Week 3:</th>
+    <th>Week 4:</th>
+    <th>Week 5:</th>
+    <th>Week 6:</th>
+    <th>Week 7:</th>
+    <th>Week 8:</th>
+    <th>Week 9:</th>
+    <th>Week 10:</th>
+    <th>Week 11:</th>
+    <th>Week 12:</th>
+</tr>
 
-<!-- ----- I made two more copies of the <tr> above so that we can visually see what it might look like. -->
-        <tr>
-            <td> <members>{{MemberName2}}</members> </td>
-            <td> <picks>{{10}}</picks> </td>
-            <td> <picks>{{1}}</picks> </td>
-            <td> <picks>{{0}}</picks> </td>
-        </tr>
-        <tr>
-            <td> <members>{{MemberName3}}</members> </td>
-            <td> <picks>{{17}}</picks> </td>
-            <td> <picks>{{3}}</picks> </td>
-            <td> <picks>{{2}}</picks> </td>
-        </tr>
+<!-- So the <tr> to </tr> stuff below needs to be repeated/rendered for each member of a group. -->
+<tr>
+    <th>
+        <members>{{member name}}</members>
+    </th>
+    <td><members>{{wk 1  score}}</members></td>
+    <td><members>{{wk 2  score}}</members></td>
+    <td><members>{{wk 3  score}}</members></td>
+    <td><members>{{wk 4  score}}</members></td>
+    <td><members>{{wk 5  score}}</members></td>
+    <td><members>{{wk 6  score}}</members></td>
+    <td><members>{{wk 7  score}}</members></td>
+    <td><members>{{wk 8  score}}</members></td>
+    <td><members>{{wk 9  score}}</members></td>
+    <td><members>{{wk 10 score}}</members></td>
+    <td><members>{{wk 11 score}}</members></td>
+    <td><members>{{wk 12 score}}</members></td>
+</tr>
+<!-- end of that area which needs to be repeated/rendered for each. -->
 
-    </table>
+<!-- Three more fake members in this group to give a good idea of what it should look like. -->
+<tr>
+    <th>
+        <members>{{second member name}}</members>
+    </th>
+    <td><members>{{1}}</members></td>
+    <td><members>{{0}}</members></td>
+    <td><members>{{2}}</members></td>
+    <td><members>{{4}}</members></td>
+    <td><members>{{3}}</members></td>
+    <td><members>{{3}}</members></td>
+    <td><members>{{2}}</members></td>
+    <td><members>{{1}}</members></td>
+    <td><members>{{4}}</members></td>
+    <td><members>{{2}}</members></td>
+    <td><members>{{1}}</members></td>
+    <td><members>{{0}}</members></td>
+</tr>
+<tr>
+    <th>
+        <members>{{third member name}}</members>
+    </th>
+    <td><members>{{4}}</members></td>
+    <td><members>{{3}}</members></td>
+    <td><members>{{2}}</members></td>
+    <td><members>{{1}}</members></td>
+    <td><members>{{0}}</members></td>
+    <td><members>{{0}}</members></td>
+    <td><members>{{2}}</members></td>
+    <td><members>{{4}}</members></td>
+    <td><members>{{3}}</members></td>
+    <td><members>{{2}}</members></td>
+    <td><members>{{1}}</members></td>
+    <td><members>{{0}}</members></td>
+</tr>
+<tr>
+    <th>
+        <members>{{fourth member name}}</members>
+    </th>
+    <td><members>{{0}}</members></td>
+    <td><members>{{2}}</members></td>
+    <td><members>{{1}}</members></td>
+    <td><members>{{3}}</members></td>
+    <td><members>{{3}}</members></td>
+    <td><members>{{4}}</members></td>
+    <td><members>{{4}}</members></td>
+    <td><members>{{4}}</members></td>
+    <td><members>{{1}}</members></td>
+    <td><members>{{3}}</members></td>
+    <td><members>{{1}}</members></td>
+    <td><members>{{1}}</members></td>
+</tr>
 
-<br><br>
 
-<a href="./TempGroupSettingsPage.html">Go to the Group settings page.</a>
+</table>
+
+<br>
+<a style="font-size: 35px; font-weight: 600;" href="./TempGroupSettingsPage.html">Go to the Group settings page.</a>
 <br><br>
 
     <br><button style="font-size: larger;"> <a href="./TempWelcomePage.html">go back to welcome page</a></button>
