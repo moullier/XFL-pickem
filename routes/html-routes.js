@@ -31,21 +31,19 @@ module.exports = function(app) {
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, function(req, res) {
 
-    console.log("/members html route hit here!");
-    let membersObject = {
-      email: req.user.email,
-      displayname: req.user.display_name
-    };
-    console.log(membersObject);
-    console.log(membersObject.displayname);
-    res.render("members", {membersObject});
+    console.log("/members html route FIRING");
+    // let user_id = req.params.id;
+    // console.log(user_id);
+    console.log(req.user.id);
+
+    res.redirect("/api/user_members/" + req.user.id);
 
     // res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
 // Route to redirct user to page to create new group.  Add new league button on members page //
-app.get("/api/new_group", function(req,res) {
-  res.render("groups", {});
+app.get("/groups", function(req,res) {
+  res.render("groups");
 });
 
 

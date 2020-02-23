@@ -20,11 +20,6 @@ table {
   /* End of straight borrowed from W3 Schools. -sam w */
   
   
-  /* So to try and simplify how I'll mark what will be replaced by Handlebars {{__}} stuff I am going to throw those elements into basically their own div's but under the name of whichever table they will come from. Making them inline will keep them from causing line breaks when rendered on the HTML, and of course the background colors will coorespond to their specific database tables. -sam w.*/
-  users {
-      background-color: #f7ff0082; 
-      display: inline
-  }
   
   groups {
       background-color: #2fff00b0; 
