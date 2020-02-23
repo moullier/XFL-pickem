@@ -100,6 +100,28 @@ $(document).on("click", "#picks-btn", getPicks);
 // Adding a click event listener to picks-btn
 $(document).on("click", "#displayname-btn", setName);
 
+$(document).on("click", "#makePicks-btn", function() {
+  console.log("makePicks button is working!");
+  $.get("/picks", function(req) {
+    window.location = "/picks";
+    console.log("get request sent to redirect to create picks page")
+  });
+});
+
+
+$(document).on("click", ".groupText", function() {
+
+  let groupId = $(this).attr("gid")
+  $.get("/picks/" + groupId, function(req) {
+    window.location = "/picks/" + groupId;
+    console.log("get request sent to redirect to create picks page")
+  });
+});
+
+
+
+
+
 //Lynn's code below ///
 
 $(document).on("click", "#newGroup-btn", function() {

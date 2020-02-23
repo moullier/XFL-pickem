@@ -1,0 +1,112 @@
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>MAKE PICKS!</h1>
+    <h2 value="{{groupID}}" id="groupTitle"></h2>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Week
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button id="wk1btn" value="1" class="dropdown-item" type="button">Week 1</button>
+                <button id="wk2btn" value="2" class="dropdown-item" type="button">Week 2</button>
+                <button id="wk3btn" value="3" class="dropdown-item" type="button">Week 3</button>
+                <button id="wk4btn" value="4" class="dropdown-item" type="button">Week 4</button>
+                <button id="wk5btn" value="5" class="dropdown-item" type="button">Week 5</button>
+                <button id="wk6btn" value="6" class="dropdown-item" type="button">Week 6</button>
+                <button id="wk7btn" value="7" class="dropdown-item" type="button">Week 7</button>
+                <button id="wk8btn" value="8" class="dropdown-item" type="button">Week 8</button>
+                <button id="wk9btn" value="9" class="dropdown-item" type="button">Week 9</button>
+                <button id="wk10btn" value="10" class="dropdown-item" type="button">Week 10</button>
+            </div>
+        </div>
+        <br />
+        <p>Or return to members page <a href="/login">here</a></p>
+      </div>
+    </div>
+    <div class="row" id="weekDiv">
+        <div class="col-12">
+            <h2><span id="weekTitle">Week #</span></h2>
+        </div>
+        <div class="col-12">
+
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                <th scope="col">Game</th>
+                <th scope="col">Home Team</th>
+                <th scope="col">Away Team</th>
+                <th scope="col">Your Pick</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">1</th>
+                <td>
+                    <span id="gm1home"></span>
+                    <button type="button" game="1" pick="home" class="pick-btn btn btn-primary btn-sm">Pick</button>
+                </td>
+                <td>
+                    <span id="gm1away"></span>
+                    <button type="button" game="1" pick="away" class="pick-btn btn btn-primary btn-sm">Pick</button>
+                </td>
+                <td id="gm1pick"></td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                <td>
+                    <span id="gm2home"></span>
+                    <button type="button" game="2" pick="home" class="pick-btn btn btn-primary btn-sm">Pick</button>
+                </td>
+                <td>
+                    <span id="gm2away"></span>
+                    <button type="button" game="2" pick="away" class="pick-btn btn btn-primary btn-sm">Pick</button>                   
+                </td>
+                <td id="gm2pick"></td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                <td>
+                    <span id="gm3home"></span>
+                    <button type="button" game="3" pick="home" class="pick-btn btn btn-primary btn-sm">Pick</button>                    
+                </td>
+                <td>
+                    <span id="gm3away"></span>
+                    <button type="button" game="3" pick="away" class="pick-btn btn btn-primary btn-sm">Pick</button>                        
+                </td>
+                <td id="gm3pick"></td>
+                </tr>
+                <tr>
+                <th scope="row">4</th>
+                <td>
+                    <span id="gm4home"></span>
+                    <button type="button" game="4" pick="home" class="pick-btn btn btn-primary btn-sm">Pick</button>   
+                </td>
+                <td>
+                    <span id="gm4away"></span>
+                    <button type="button" game="4" pick="away" class="pick-btn btn btn-primary btn-sm">Pick</button>       
+                </td>
+                <td id="gm4pick"></td>
+                </tr>
+            </tbody>
+            </table>
+
+            <button type="button" id="submit-btn" class="btn btn-primary btn-lg">Submit Picks</button>
+          
+      </div>
+    </div>
+
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="../assets/js/picks.js"></script>
+
+</body>
