@@ -1,5 +1,6 @@
 // global week and picks variables
-let current_week;
+let current_week, loggedInUserID;
+let groupID, memberID;
 let picksEntered = [undefined, undefined, undefined, undefined];
 
 // on page load
@@ -8,18 +9,35 @@ $(document).ready(function() {
 
     console.log("picksEntered = " + picksEntered);
 
-    let groupID = $("#groupTitle").attr("value");
-//    console.log("GROUP ID IS " + groupID);
+    // get the group ID that was passed in through handlebars
+    groupID = parseInt($("#groupTitle").attr("value"));
 
+    // get the group name for the current group
     $.get("/api/getGroupbyID/" + groupID).then(function(data) {
         console.log(data.name);
         $("#groupTitle").text(data.name);
+
     });
 
+    // get and store the logged in user's ID
+    $.get("/api/user_data").then(function(data) {
+        console.log(data);
+        loggedInUserID = data.id;
+
+        let queryStr = `/api/get_memberID/${loggedInUserID}/${groupID}`;
+        console.log(queryStr);
+        $.get(queryStr).then(function(memberData) {
+            console.log("memberData is:");
+            console.log(memberData);
+            memberID = memberData.id;
+            console.log(memberID);
+        });
+    });
 });
 
 $(document).on("click", ".dropdown-item", dropdownClicked);
 
+// handles when a week is selected, shows the schedule of games
 function dropdownClicked() {
     current_week = parseInt($(this).attr("value"));
     $("#weekDiv").show();
@@ -50,6 +68,7 @@ function resetPage() {
     $("#submit-btn").prop('disabled', true);
 
     $("#weekTitle").text("Week #" + current_week);
+    $("#addPicksResult").text("");
 
     picksEntered = [undefined, undefined, undefined, undefined];
     console.log("picksEntered = ");
@@ -97,5 +116,23 @@ function registerPick() {
 $(document).on("click", "#submit-btn", submitPicks);
 
 function submitPicks() {
-    console.log("submit picks");
+
+    // picks are stored in picksEntered as booleans corresponding to each of the four games
+
+    console.log(memberID);
+
+    // post all four new pick requests
+    // code is asynchronous so they may not complete in order, but that is okay
+    for(let i = 0; i < 4; i++) {
+        $.post("/api/pick", {
+            "week": current_week,
+            "game_number": i+1,
+            "prediction": picksEntered[i],
+            "MemberId": memberID
+        }).then(function(data) {
+            console.log(data);
+        })
+    }
+
+    $("#addPicksResult").text("Picks added successfully for week " + current_week)
 }

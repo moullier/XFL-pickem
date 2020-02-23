@@ -111,8 +111,8 @@ module.exports = function(app) {
   });
 
 
-  // Route for getting all picks for a specific user
-  app.get("/api/user_picks/:id", function(req, res) {
+  // Route for getting all picks for a specific user on a specific week
+  app.get("/api/user_picks/:id/:week", function(req, res) {
     console.log("hit the user_picks get route");
     if (!req.user) {
       // The user is not logged in, send back an empty object
@@ -134,7 +134,10 @@ module.exports = function(app) {
               UserId: req.params.id
             },
           }
-        ]
+        ],
+        where: {
+          week: req.params.week
+        }
       }).then(function(dbPick) {
         res.json(dbPick);
       })
@@ -195,6 +198,24 @@ app.get("/api/week_schedule/:week", function(req, res) {
     res.json(dbSchedule);
   })
 
+});
+
+
+// route to return the member ID that corresponds to a User ID and Group ID pair
+app.get("/api/get_memberID/:id/:gid", function(req, res) {
+
+  console.log("hit api/get_memberID, id is " + req.params.id + " gid is " + req.params.gid);
+
+  db.Member.findOne({
+    where: {
+      UserId: req.params.id,
+      GroupId: req.params.gid
+    }
+  }).then(function(dbMember) {
+
+    console.log(dbMember);
+    res.json(dbMember);
+  })
 });
 
 
