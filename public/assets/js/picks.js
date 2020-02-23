@@ -1,6 +1,6 @@
 // global week and picks variables
 let current_week, loggedInUserID;
-let groupID, memberID;
+let groupID, memberID, week_locked;
 let picksEntered = [undefined, undefined, undefined, undefined];
 
 // on page load
@@ -44,9 +44,22 @@ function dropdownClicked() {
 
     resetPage();
 
-
+    // get and display the game schedule for the selected week
     $.get("/api/week_schedule/" + current_week).then(function(data) {
         console.log(data);
+
+        // check if games are completed -- if so, can't add/change picks
+        if(data[0].game_occurred) {
+            console.log("The game started! This week is locked!")
+            $("#lockStatus").text(" - Picks are Locked")
+            $("#submit-btn").hide();
+            week_locked = true;
+        } else {
+            console.log("Week isn't completed yet")
+            $("#lockStatus").text(" - Open for Picks")
+            $("#submit-btn").show();
+            week_locked = false;
+        }
 
         let i = 1;
         data.forEach(element => {
@@ -58,6 +71,31 @@ function dropdownClicked() {
 
             i++;
         });
+
+        // check to see if this member already has picks entered for this week
+        // and display them if so
+
+        $.get(`/api/user_picks/${memberID}/${current_week}`).then(function(pickData) {
+            console.log(pickData);
+            console.log("pickData.length = " + pickData.length);
+
+            // presumably, in this case picks exist for this week
+            if(pickData.length > 0) {
+                pickData.forEach(element => {
+                    let pickString = "#gm" + element.game_number + "pick";
+                    let prediction = element.prediction
+                    let team;
+                    if(prediction) {
+                        team = data[element.game_number - 1].home_name;
+                    } else {
+                        team = data[element.game_number - 1].away_name;
+                    }
+
+                    $(pickString).text(team);
+                });
+            }
+        });
+
     });
 }
 

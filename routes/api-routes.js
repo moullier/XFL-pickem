@@ -111,38 +111,23 @@ module.exports = function(app) {
   });
 
 
-  // Route for getting all picks for a specific user on a specific week
-  app.get("/api/user_picks/:id/:week", function(req, res) {
-    console.log("hit the user_picks get route");
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
+// Route for getting all picks for a specific member on a specific week
+app.get("/api/user_picks/:memid/:week", function(req, res) {
+  console.log("hit the user_picks get by week route");
+  
+  let member_id = req.params.memid;
+  console.log("member id is " + member_id);
 
-      let user_id = req.params.id;
-      console.log("/api/user_picks on the server: ");
-      console.log("user_id is " + user_id);
-
-      db.Pick.findAll({
-        include: [
-          {
-            model: db.Member, 
-            include: [
-                db.Group
-            ],
-            where: {
-              UserId: req.params.id
-            },
-          }
-        ],
-        where: {
-          week: req.params.week
-        }
-      }).then(function(dbPick) {
-        res.json(dbPick);
-      })
+  db.Pick.findAll({
+    where: {
+      week: req.params.week,
+      MemberId: member_id
     }
-  });
+  }).then(function(dbPick) {
+    res.json(dbPick);
+  })
+});
+
 
 
 // Get route to return all users in a group
@@ -299,5 +284,3 @@ app.delete("/api/delete_group/:id", function(req, res) {
     });
   });
 }
-
-
