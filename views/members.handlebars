@@ -1,26 +1,32 @@
-<body>
-  <nav class="navbar navbar-default">
+<body id="members-page-body-tag">
+  
+    <div class="jumbotron text-center" id="jumbotron-members">
+    
+<nav class="navbar navbar-default sticky-top">
   <div class="container-fluid">
     <div class="navbar-header">
+    <img src="../public/assets/img/XflLogo.jpg" width="30px" height="30px" alt="xfl logo">
       <a class="navbar-brand" href="/logout">
+    <img src="../public/assets/img/XflLogo.jpg" width="30" height="30" alt="">
         Logout
       </a>
     </div>
   </div>
 </nav>
-    <body>
-    <br>
-    <h1>Welcome, <users> {{  membersObject.displayname}}! </users></h1>
 
+    <h1>Welcome, {{  membersObject.displayname}}!</h1>
+    </div>
     {{!-- <div id="group-info">
       {{#each}}
         {{groupObject}}
       {{/each}}
     </div> --}}
-
+<div class="row">
+  <div class="col-1"></div>
+<div class="col-10 text-left" id="body-box-members">
     
-    <a href="./TempMember1Page.html"><members>Member Name Here{{hbsObject.displayname}}</members></a><br>
-    <a href="./TempGroup1Page.html"><groups>Group name here. clicking here will bring you to the page which shows your specific group (aka league) and all those other group memebers' scores/results.</groups></a><br>
+    <a href="./TempMember1Page.html">Member Name Here{{hbsObject.displayname}}</a><br>
+    <a href="./TempGroup1Page.html">Group name here. clicking here will bring you to the page which shows your specific group (aka league) and all those other group memebers' scores/results.</a><br>
     <br>
 
     <a href="./TempMember1Page.html"><members>Member Name #2 Here</members></a><br>
@@ -57,7 +63,8 @@
       </div>
     </div>    
   </div>
-
+</div>
+</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/js/members.js"></script>
 

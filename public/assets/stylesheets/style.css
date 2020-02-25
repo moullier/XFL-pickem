@@ -46,12 +46,20 @@ table {
       display: inline
   }
 
-#mainHandlebarsBody {
-  /* This was just making sure a photo for the background showed up. ignore for now. -sam */
-  /* background-color: aquamarine;
-  background-image: url("../img/backgroundAllTeams.jpg");
+#members-page-body-tag {
+  background-color: aquamarine;
+  /* background-image: url("../img/backgroundAllTeams.jpg");
   background-size: cover;
-  background-repeat: repeat; */
+  background-repeat: repeat;  */
+}
+
+#jumbotron-members {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+#body-box-members {
+  background-color: azure;
 }
 
 #tempWelcomeHTMLPage {
