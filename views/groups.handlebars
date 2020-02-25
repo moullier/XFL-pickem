@@ -1,20 +1,24 @@
-<body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
+<body><div id="groups-whole-page">
+  <div class="jumbotron">
+  <nav class="navbar navbar-default offset-1">
+      <div class="navbar-header">navbar stuff soon to be added here
       </div>
-    </div>
   </nav>
+   <h1 class="offset-1">CREATE A NEW LEAGUE!</h1>
+  </div>
+
+{{!-- for now I'm borrowing the same ID tag used on the members page to get a similar look. -sam --}}
+<div class="col-10 offset-1" id="body-box-members">
   <div class="container">
-      <h1>CREATE A NEW LEAGUE!</h1>
+     
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-          <div>
-            <label for="InputGroupName">Enter the name of your new league.</label>
-            <input type="test" id="group-input" placeholder="Group Name"></input>
-          </div>
+          {{!-- <div> --}}
+            <label for="InputGroupName">Enter the name of your new league.</label><br>
+            <input type="test" id="group-input" placeholder="Group Name"></input><br>
+          {{!-- </div> --}}
 
-           <button id="newGroupBtn" class="btn btn-primary">Create League</button>
+           <button id="newGroupBtn" class="btn btn-primary" style="margin-top: 8px;">Create League</button>
 
           <div id="added-groups">
             {{#each name}}
@@ -34,8 +38,8 @@
       </div>
     </div>
   </div>
-
+</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/js/groups.js"></script>
 
-</body>
+</div></body>

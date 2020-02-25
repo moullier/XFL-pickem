@@ -1,22 +1,18 @@
-<body id="members-page-body-tag">
-  
-    <div class="jumbotron text-center" id="jumbotron-members">
-    
-<nav class="navbar navbar-default sticky-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    <img src="../public/assets/img/XflLogo.jpg" width="30px" height="30px" alt="xfl logo">
-      <a class="navbar-brand" href="/logout">
-    <img src="../public/assets/img/XflLogo.jpg" width="30" height="30" alt="">
-        Logout
-      </a>
-    </div>
-  </div>
-</nav>
-    <body>
-    <br>
-    <h1>Welcome, <users> {{  displayname}}! </users></h1>
+<body><div id="members-whole-page">
 
+<h1 id="welcome-header">Welcome, {{  displayname}}!</h1>
+<div class="jumbotron" id="jumbotron-members">    
+  <ul class="nav justify-content-end">
+    {{!-- <div class="container-fluid"> --}}
+      {{!-- <div class="navbar-header"> --}}
+        <li class="nav-item"><a class="nav-link active" href="/logout">Logout</a></li>
+      {{!-- </div> --}}
+    {{!-- </div> --}}
+  </ul>
+    
+</div>
+<div class="col-10 offset-1" id="body-box-members"> 
+  {{!-- .col-10.offset-1#body-box-members --}}
 
     <div id="group-info">
       {{#each groups}}
@@ -24,12 +20,6 @@
       <h1 class="group-name">{{this}}</h1>
       {{/each}}
     </div>
-
-    
-
-
-
-
 
     <div>
       <button id="newGroup-btn" class="btn btn-primary">Click Here to Create a new League!</button>
@@ -59,8 +49,10 @@
     </div>    
   </div>
 </div>
+<div id="bottom-spacer"></div>
 </div>
+</div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="/assets/js/members.js"></script>
-
-</body>
+</div></body>
