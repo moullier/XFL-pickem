@@ -111,11 +111,13 @@ $(document).on("click", "#makePicks-btn", function() {
 });
 
 
+// click listener on the list of groups that the user is a member of
+// clicking one takes the user to the league page
 $(document).on("click", ".groupText", function() {
 
   let groupId = $(this).attr("gid")
-  $.get("/picks/" + groupId, function(req) {
-    window.location = "/picks/" + groupId;
+  $.get("/league/" + groupId, function(req) {
+    window.location = "/league/" + groupId;
     console.log("get request sent to redirect to create picks page")
   });
 });

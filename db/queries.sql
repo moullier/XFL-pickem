@@ -13,3 +13,9 @@ where `users`.id = 16;
 select `name`, members.id, members.user_id from `groups`
 left join members on `groups`.id = members.group_id
 where members.user_id = 16;
+
+-- Get a list of the display names of users in a specified group
+select `users`.display_name from members
+left join `groups` on members.GroupId = `groups`.id
+left join `users` on members.UserId = `users`.id
+where `groups`.id = 1;
