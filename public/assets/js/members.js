@@ -14,6 +14,8 @@ $(document).ready(function() {
       $(".member-name").text("User ID: " + data.id);
     }
     loggedin_id = data.id;
+    // Set loggedin_id to local storage so that it can be used globally //
+    localStorage.setItem("loggedin_id", loggedin_id);
     console.log(loggedin_id);
     console.log(typeof(loggedin_id));
 
@@ -120,10 +122,7 @@ $(document).on("click", ".groupText", function() {
 
 
 
-
-
-//Lynn's code below ///
-
+// On click function will redirect user page to create new group ///
 $(document).on("click", "#newGroup-btn", function() {
   console.log("new group button is working!");
   $.get("/groups", function(req) {

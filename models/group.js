@@ -16,16 +16,14 @@ module.exports = function(sequelize, DataTypes) {
         onDelete: "cascade"
       });
     
+      // ******  Had to comment out code below - broke members.handlebars page 
+
       // userId of commissioner
-      Group.belongsTo(models.User, {
-        foreignKey: {
-          allowNull: false
-        }
-      });
-    
-    
-    
-    
+      // Group.belongsTo(models.User, {
+      //   foreignKey: {
+      //     allowNull: false
+      //   }
+      // });
     };
 
     return Group;

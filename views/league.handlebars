@@ -1,0 +1,16 @@
+<h1> League Page</h1>
+<h1> {{name}}</h1>
+
+<div>
+            <label for="enterUserName">Who would you like to add to this group?</label>
+            <input type="name" id="user-input" placeholder="User Name">
+          </div>
+
+          {{#each name}}
+            {{this}}
+            {{/each}}
+
+          <button id="addGroupMemberBtn" class="btn btn-primary">Add Member</button>
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./assets/js/groups.js"></script>

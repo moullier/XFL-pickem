@@ -25,26 +25,30 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
-/// Lynn's Code Below /////
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, function(req, res) {
 
     console.log("/members html route FIRING");
-    // let user_id = req.params.id;
-    // console.log(user_id);
+    console.log("Logging user id as ");
     console.log(req.user.id);
 
     res.redirect("/api/user_members/" + req.user.id);
+    console.log("Client sent to: /api/user_members/");
 
     // res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
-  // Route to redirct user to page to create new group.  Add new league button on members page //
+  // Route to redirct user to /groups page to create new league //
   app.get("/groups", function(req,res) {
-    res.render("groups", {});
+    res.render("groups");
   });
+
+  app.get("/league/", function(req,res) {
+    console.log("request received to render league page");
+    res.render("league");
+  })
 
   // Route to load picks page -- we could pass in the week here and preload the requested
   // (or current?) week possibly?
@@ -67,42 +71,42 @@ module.exports = function(app) {
 
 
 
+///// I don't think code below is needed - this all happens in api routes /////
 
+  // app.get("/member_page/:id", function(req, res) {
+  //   if (!req.user) {
+  //     // The user is not logged in, send back an empty object
+  //     res.json({});
+  //   } else {
 
-  app.get("/member_page/:id", function(req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
+  //     let user_id = req.params.id;
+  //     console.log("user_id is " + user_id);
 
-      let user_id = req.params.id;
-      console.log("user_id is " + user_id);
+  //     db.Member.findAll({
+  //       where: {
+  //         UserId: req.params.id
+  //       },
+  //       include: [db.Group]
+  //     }).then(function(dbMember) {
+  //       console.log(dbMember);
+  //       let resultList = [];
+  //       dbMember.forEach(element => {
+  //         resultList.push(element.dataValues.Group.dataValues.name);
+  //       });
 
-      db.Member.findAll({
-        where: {
-          UserId: req.params.id
-        },
-        include: [db.Group]
-      }).then(function(dbMember) {
-        console.log(dbMember);
-        let resultList = [];
-        dbMember.forEach(element => {
-          resultList.push(element.dataValues.Group.dataValues.name);
-        });
+  //       console.log(resultList);
 
-        console.log(resultList);
-
-        let membersObject = {
-          email: req.user.email,
-          displayname: req.user.display_name,
-          groups: resultList
-        };
-        console.log(membersObject);
-        console.log(membersObject.displayname);
-        res.render("members", {membersObject});
-      })
-    }
-  });
+  //       let membersObject = {
+  //         email: req.user.email,
+  //         displayname: req.user.display_name,
+  //         groups: resultList
+  //       };
+  //       console.log(membersObject);
+  //       console.log(membersObject.displayname);
+  //       res.render("members", {membersObject});
+  //     })
+  //   }
+  // });
 
 
 

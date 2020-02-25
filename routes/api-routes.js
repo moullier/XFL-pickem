@@ -80,19 +80,17 @@ module.exports = function (app) {
 
 
 
-  // Route for getting member info about user (which groups they're in)
-  app.get("/api/user_members/:id", function (req, res) {
-    console.log("The user_members api get route is FIRING!");
+    // GET ROUTE - collects user data: email, display name, user id, and groups to which they belong //
+    app.get("/api/user_members/:id", function (req, res) {
+    console.log("The api/user_members/ route is FIRING!");
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
       let user_id = req.params.id;
-      console.log("/api/user_members on the server: ");
       console.log("user_id is " + user_id);
-      console.log(req.user.email);
-
-
+      console.log("user email is " + req.user.email);
+      console.log("below is table join: match on user id from members table and all of groups table");
       db.Member.findAll({
         where: {
           UserId: req.params.id
@@ -107,57 +105,26 @@ module.exports = function (app) {
         dbMember.forEach(element => {
           groupList.push(element.dataValues.Group.id);
         })
-        console.log("HHHHHHHEEEEEEEELLLLOOOOOOO");
+        console.log("below is group name list for logged in user");
         console.log(resultList);
+        console.log("below is group id# list for logged in user");
         console.log(groupList);
-
+        // Create member object for members.handlebars rendering //
         let memberObject = {
           email: req.user.email,
           displayname: req.user.display_name,
           groups: resultList,
           groupNums: groupList
-          }
-
+          };
         console.log("below is log of member object");
         console.log(memberObject);
-
+        // render members.handlebars page and populate with memberObject //
         res.render("members", memberObject);
-        
-        // res.json(dbMember);
-      })
-    }
+      });
+    };
   })
 
-  /// Lynn's code above //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //  ** Code below - I modified the code below (see above) to make work with handlebars.  I believe this can be deleted??
-  // Route for getting member info about user (which groups they're in)
-  // app.get("/api/user_members/:id", function(req, res) {
-  //   console.log("hit the user_members get route");
-  //   if (!req.user) {
-  //     // The user is not logged in, send back an empty object
-  //     res.json({});
-  //   } else {
-  //     console.log("below is the log for the user data")
-  //     let user_id = req.params.id;
-  //     console.log("/api/user_members on the server: ");
-  //     console.log("user_id is " + user_id);
-
-  //     db.Member.findAll({
-  //       where: {
-  //         UserId: req.params.id
-  //       },
-  //       include: [db.Group]
-  //     }).then(function(dbMember) {
-  //       let resultList = [];
-  //       dbMember.forEach(element => {
-  //         resultList.push(element.dataValues.Group.name);
-  //       });
-
-  //       res.json(dbMember);
-
-  //       })
-  //     }
-  // });
+   
 
 
   // Route for getting all picks for a specific user
@@ -189,7 +156,7 @@ module.exports = function (app) {
       })
     }
   });
-
+  
 
   // Get route to return all users in a group
   app.get("/api/group_users/:id", function (req, res) {
@@ -246,21 +213,71 @@ app.get("/api/week_schedule/:week", function(req, res) {
 });
 
 
+//GET request to render League page /////
+app.get("/league/:groupId:loggedin_id", function(req, res){
+  console.log("api route /league/:groupId is FIRING")
+  let loggedin_id = req.params.loggedin_id;
+  console.log("loggedin_id is " + loggedin_id);
+  let groupId = req.params.groupId;
+  console.log("groupId is " + groupId);
+
+    db.Group.findOne({
+      where: {
+        id: groupId
+      }
+    }).then(function(dbGroup) {
+      console.log("*******log of dbGroup below");
+      console.log(dbGroup);
+
+      let leagueObject = {
+        name: dbGroup.dataValues.name
+      }
+      console.log(leagueObject);
+      res.render("league", leagueObject);
+    })
+  
+})
+
+
 
 
 
   // POST ROUTES
 
-  // add a new group
-  // input is an object with a name value
+  // POST request to create a new league and add to database //
   app.post("/api/group", function (req, res) {
-    console.log("post /api/groups/ route");
-    console.log(req.body);
+    console.log("The create a new group api is FIRING");
+    db.User.findAll({
+    })
+    db.Group.create({
+      name: req.body.name
+    })
+    .then(function () {
 
-    db.Group.create(req.body).then(function (dbGroup) {
-      res.json(dbGroup);
+      let groupObject = {
+        name: req.body.name
+      }
+      console.log("Below is the log of the newly created groupObject");
+      console.log(groupObject);
+      res.json(groupObject);
     });
   });
+
+  // GET route to retrun all group table data
+  app.get("/api/groups/:name", function(req, res) {
+    console.log("/api/groups/:name route is FIRING!");
+    // Query to search groups table where name matches params.name data //
+    db.Group.findAll({
+      where: {
+        name: req.params.name
+      }
+    }).then(function(dbGroup) {
+      console.log("Below is the log of the data being returned to client")
+      console.log(dbGroup);
+      res.json(dbGroup);
+    })
+  })
+
 
   // add a new group member
   // input is an object with "user_id" and "GroupId" keys
@@ -270,8 +287,11 @@ app.get("/api/week_schedule/:week", function(req, res) {
 
     db.Member.create(req.body).then(function (dbMember) {
       res.json(dbMember);
+
     });
   });
+
+
 
   // add a new pick
   // input is an object with "week", "game_number","prediction" and "MemberId" keys
