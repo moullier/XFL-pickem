@@ -129,42 +129,48 @@ app.get("/api/user_picks/:memid/:week", function(req, res) {
 });
 
 
+// Route for getting all picks for a specific member for all weeks
+app.get("/api/user_picks/:memid", function(req, res) {
+  console.log("hit the user_picks get all weeks route");
+  
+  let member_id = req.params.memid;
+  console.log("member id is " + member_id);
+
+  db.Pick.findAll({
+    where: {
+      MemberId: member_id
+    }
+  }).then(function(dbPick) {
+    res.json(dbPick);
+  })
+});
+
 
 // Get route to return all users in a group
 app.get("/api/group_users/:id", function(req, res) {
   console.log("hit the group_users get route");
-  if (!req.user) {
-    // The user is not logged in, send back an empty object
-    res.json({});
-  } else {
+  console.log(req.data);
+  console.log(req);
 
-    let group_id = req.params.id;
-    console.log("/api/group_users on the server: ");
-    console.log("group_id is " + group_id);
+  let group_id = req.params.id;
+  console.log("/api/group_users on the server: ");
+  console.log("group_id is " + group_id);
 
-    db.User.findAll({
-      include: [
-        {
-          model: db.Member, 
-          include: [
-              db.Group
-          ],
-          where: {
-            GroupId: group_id
-          },
-        }
-      ]
-    }).then(function(dbPick) {
-      // console.log(dbPick);
-      // let resultList = [];
-      // dbPick.forEach(element => {
-      //   resultList.push(element.dataValues.Group.dataValues.name);
-      // });
-
-      // console.log(resultList);
-      res.json(dbPick);
-    })
-  }
+  db.User.findAll({
+    include: [
+      {
+        model: db.Member, 
+        include: [
+            db.Group
+        ],
+        where: {
+          GroupId: group_id
+        },
+      }
+    ]
+  }).then(function(dbUser) {
+    res.json(dbUser);
+  })
 });
 
 
@@ -176,6 +182,39 @@ app.get("/api/week_schedule/:week", function(req, res) {
   db.Schedule.findAll({
     where: {
       week: req.params.week
+    }
+  }).then(function(dbSchedule) {
+
+    console.log(dbSchedule);
+    res.json(dbSchedule);
+  })
+
+});
+
+
+// route to return the entire season's schedule
+app.get("/api/schedule/", function(req, res) {
+
+  console.log("hit /api/schedule");
+
+  db.Schedule.findAll({}).then(function(dbSchedule) {
+
+    console.log(dbSchedule);
+    res.json(dbSchedule);
+  })
+
+});
+
+
+// route to return a specific week and game's schedule info
+app.get("/api/game_schedule/:week/:game", function(req, res) {
+
+  console.log("hit /api/game_schedule, week is " + req.params.week + " and game is " + req.params.game);
+
+  db.Schedule.findAll({
+    where: {
+      week: req.params.week,
+      game_number: req.params.game
     }
   }).then(function(dbSchedule) {
 
