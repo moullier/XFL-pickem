@@ -1,0 +1,33 @@
+<body>
+<div class="container">
+    <div class="row">
+        <h2 value="{{groupID}}" id="groupTitle"></h2>
+    </div>
+    <div class="row" id="memberScoreList">
+        <div class="col-12 col-md-8 offset-md-2">
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                <th scope="col">Member</th>
+                <th scope="col">Total Score</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2">
+            <button id="makePicks-btn" class="btn btn-primary" value="{{groupID}}">Make Picks!</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/league.js"></script>
+</body>

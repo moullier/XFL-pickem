@@ -1,5 +1,6 @@
 // global week and picks variables
-let current_week;
+let current_week, loggedInUserID;
+let groupID, memberID, week_locked;
 let picksEntered = [undefined, undefined, undefined, undefined];
 
 // on page load
@@ -8,27 +9,57 @@ $(document).ready(function() {
 
     console.log("picksEntered = " + picksEntered);
 
-    let groupID = $("#groupTitle").attr("value");
-//    console.log("GROUP ID IS " + groupID);
+    // get the group ID that was passed in through handlebars
+    groupID = parseInt($("#groupTitle").attr("value"));
 
+    // get the group name for the current group
     $.get("/api/getGroupbyID/" + groupID).then(function(data) {
         console.log(data.name);
         $("#groupTitle").text(data.name);
+
     });
 
+    // get and store the logged in user's ID
+    $.get("/api/user_data").then(function(data) {
+        console.log(data);
+        loggedInUserID = data.id;
+
+        let queryStr = `/api/get_memberID/${loggedInUserID}/${groupID}`;
+        console.log(queryStr);
+        $.get(queryStr).then(function(memberData) {
+            console.log("memberData is:");
+            console.log(memberData);
+            memberID = memberData.id;
+            console.log(memberID);
+        });
+    });
 });
 
 $(document).on("click", ".dropdown-item", dropdownClicked);
 
+// handles when a week is selected, shows the schedule of games
 function dropdownClicked() {
     current_week = parseInt($(this).attr("value"));
     $("#weekDiv").show();
 
     resetPage();
 
-
+    // get and display the game schedule for the selected week
     $.get("/api/week_schedule/" + current_week).then(function(data) {
         console.log(data);
+
+        // check if games are completed -- if so, can't add/change picks
+        if(data[0].game_occurred) {
+            console.log("The game started! This week is locked!")
+            $("#lockStatus").text(" - Picks are Locked")
+            $("#submit-btn").hide();
+            week_locked = true;
+        } else {
+            console.log("Week isn't completed yet")
+            $("#lockStatus").text(" - Open for Picks")
+            $("#submit-btn").show();
+            week_locked = false;
+        }
 
         let i = 1;
         data.forEach(element => {
@@ -40,6 +71,31 @@ function dropdownClicked() {
 
             i++;
         });
+
+        // check to see if this member already has picks entered for this week
+        // and display them if so
+
+        $.get(`/api/user_picks/${memberID}/${current_week}`).then(function(pickData) {
+            console.log(pickData);
+            console.log("pickData.length = " + pickData.length);
+
+            // presumably, in this case picks exist for this week
+            if(pickData.length > 0) {
+                pickData.forEach(element => {
+                    let pickString = "#gm" + element.game_number + "pick";
+                    let prediction = element.prediction
+                    let team;
+                    if(prediction) {
+                        team = data[element.game_number - 1].home_name;
+                    } else {
+                        team = data[element.game_number - 1].away_name;
+                    }
+
+                    $(pickString).text(team);
+                });
+            }
+        });
+
     });
 }
 
@@ -50,6 +106,7 @@ function resetPage() {
     $("#submit-btn").prop('disabled', true);
 
     $("#weekTitle").text("Week #" + current_week);
+    $("#addPicksResult").text("");
 
     picksEntered = [undefined, undefined, undefined, undefined];
     console.log("picksEntered = ");
@@ -97,5 +154,23 @@ function registerPick() {
 $(document).on("click", "#submit-btn", submitPicks);
 
 function submitPicks() {
-    console.log("submit picks");
+
+    // picks are stored in picksEntered as booleans corresponding to each of the four games
+
+    console.log(memberID);
+
+    // post all four new pick requests
+    // code is asynchronous so they may not complete in order, but that is okay
+    for(let i = 0; i < 4; i++) {
+        $.post("/api/pick", {
+            "week": current_week,
+            "game_number": i+1,
+            "prediction": picksEntered[i],
+            "MemberId": memberID
+        }).then(function(data) {
+            console.log(data);
+        })
+    }
+
+    $("#addPicksResult").text("Picks added successfully for week " + current_week)
 }
