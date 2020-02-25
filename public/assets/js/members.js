@@ -4,6 +4,7 @@ $(document).ready(function() {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page with display name if there is one, or user ID otherwise
   $.get("/api/user_data").then(function(data) {
+    console.log("below is the user data from members.js");
     console.log(data);
     $(".member-email").text(data.email);
     if(data.display_name != undefined){
@@ -13,31 +14,27 @@ $(document).ready(function() {
       $(".member-name").text("User ID: " + data.id);
     }
     loggedin_id = data.id;
+    // Set loggedin_id to local storage so that it can be used globally //
+    localStorage.setItem("loggedin_id", loggedin_id);
     console.log(loggedin_id);
     console.log(typeof(loggedin_id));
 
 
-    // get groups
+    // get groups //
     $.get("/api/user_members/" + loggedin_id).then(function(data) {
-      console.log("************")
-      console.log(data);
+      console.log("below is the get groups data object");
+      console.log(data[0].Group.name);
+      // window.location.replace("/members");
 
-      let newList = $("<ul>");
-      data.forEach(element => {
-        let newGroup = $("<li>");
-        let newSpan = $("<span>");
-        newSpan.text(element.Group.name);
-        newSpan.addClass("groupText");
-        newSpan.attr("gid", element.GroupId)
-        newGroup.append(newSpan);
-        newList.append(newGroup);
-      });
+      // let newList = $("<ul>");
+      // data.forEach(element => {
+      //   let newGroup = $("<li>");
+      //   newGroup.text(element.Group.name);
+      //   newList.append(newGroup);
+      // });
 
-      $(".group-names").append(newList);
+      // $(".group-names").append(newList);
     });
-
-
-
   });
 });
 
@@ -45,9 +42,12 @@ function getGroups() {
   $.get("/api/user_members/" + loggedin_id).then(function(data) {
     console.log("below is .get /api/user_members data return");
     console.log(data);
-    $(".group-names").text(data);
+    window.location.replace("/members");
+    // $(".group-names").text(data);
   });
 }
+
+
 
 function getPicks() {
   $.get("/api/user_picks/" + loggedin_id).then(function(data) {
@@ -124,10 +124,7 @@ $(document).on("click", ".groupText", function() {
 
 
 
-
-
-//Lynn's code below ///
-
+// On click function will redirect user page to create new group ///
 $(document).on("click", "#newGroup-btn", function() {
   console.log("new group button is working!");
   $.get("/groups", function(req) {

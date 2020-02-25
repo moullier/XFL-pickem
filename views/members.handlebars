@@ -13,34 +13,30 @@
     </div>
   </div>
 </nav>
+    <body>
+    <br>
+    <h1>Welcome, <users> {{  displayname}}! </users></h1>
 
-    <h1>Welcome, {{  membersObject.displayname}}!</h1>
-    </div>
-    {{!-- <div id="group-info">
-      {{#each}}
-        {{groupObject}}
+
+    <div id="group-info">
+      {{#each groups}}
+      <button data-id="{{this.groupNums}}" data-name="{{this.groups}}">View League</button>
+      <h1 class="group-name">{{this}}</h1>
       {{/each}}
-    </div> --}}
-<div class="row">
-  <div class="col-1"></div>
-<div class="col-10 text-left" id="body-box-members">
-    
-    <a href="./TempMember1Page.html">Member Name Here{{hbsObject.displayname}}</a><br>
-    <a href="./TempGroup1Page.html">Group name here. clicking here will bring you to the page which shows your specific group (aka league) and all those other group memebers' scores/results.</a><br>
-    <br>
+    </div>
 
-    <a href="./TempMember1Page.html"><members>Member Name #2 Here</members></a><br>
-    <a href="./TempGroup1Page.html"><groups>Group Name #2 here.</groups></a><br>
-    <br>
+    
+
+
+
+
 
     <div>
       <button id="newGroup-btn" class="btn btn-primary">Click Here to Create a new League!</button>
-      <button id="makePicks-btn" class="btn btn-primary">Click Here to Make Picks!</button>
     </div>
 
 
 
-    <h3>By the way, I envision almost all "Go Back" links to route back to this page.</h3>
     <div id="allMembersResults"></div>
 
 
@@ -55,7 +51,6 @@
       <div class="col-md-6 col-md-offset-3">
         <h3>Group Membership</h3>
         <h4><span class="group-names"></span></h4>
-        <button type="button" id="group-btn" class="btn btn-primary">Get Groups</button>
         <button type="button" id="picks-btn" class="btn btn-primary">Get My Picks</button>
         <button type="button" id="displayname-btn" class="btn btn-primary">Set Display Name</button>
         <input class="form-control" id="name_field" type="text" placeholder="Enter display name">
@@ -66,6 +61,6 @@
 </div>
 </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="./assets/js/members.js"></script>
+  <script type="text/javascript" src="/assets/js/members.js"></script>
 
 </body>

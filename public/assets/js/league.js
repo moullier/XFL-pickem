@@ -132,3 +132,11 @@ $(document).on("click", "#makePicks-btn", function() {
       console.log("get request sent to redirect to create picks page")
     });
   });
+
+
+
+    newMemberBtn.on("click", function () {
+        let newGroupMember = $("#user-input").val().trim();
+        console.log("new member button is working!")
+        console.log(newGroupMember);
+    })

@@ -3,13 +3,13 @@
 let db = require("../models");
 let passport = require("../config/passport");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
-  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+  app.post("/api/login", passport.authenticate("local"), function (req, res) {
 
-    
+
     //console.log("** login** req.user on the server: ");
     //console.log(req.user);
     // Sending back a password, even a hashed password, isn't a good idea
@@ -23,29 +23,29 @@ module.exports = function(app) {
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
-  app.post("/api/signup", function(req, res) {
+  app.post("/api/signup", function (req, res) {
     db.User.create({
       email: req.body.email,
       password: req.body.password,
       display_name: req.body.display_name
     })
-      .then(function() {
+      .then(function () {
         res.redirect(307, "/api/login");
       })
-      .catch(function(err) {
+      .catch(function (err) {
         res.status(401).json(err);
       });
   });
 
   // Route for logging user out
-  app.get("/logout", function(req, res) {
+  app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/");
   });
-  
+
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", function(req, res) {
+  app.get("/api/user_data", function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -80,35 +80,52 @@ module.exports = function(app) {
 
 
 
-  // Route for getting member info about user (which groups they're in)
-  app.get("/api/user_members/:id", function(req, res) {
-    console.log("hit the user_members get route");
+    // GET ROUTE - collects user data: email, display name, user id, and groups to which they belong //
+    app.get("/api/user_members/:id", function (req, res) {
+    console.log("The api/user_members/ route is FIRING!");
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-
       let user_id = req.params.id;
-      console.log("/api/user_members on the server: ");
       console.log("user_id is " + user_id);
-
+      console.log("user email is " + req.user.email);
+      console.log("below is table join: match on user id from members table and all of groups table");
       db.Member.findAll({
         where: {
           UserId: req.params.id
         },
         include: [db.Group]
-      }).then(function(dbMember) {
-        // console.log(dbMember);
-        // let resultList = [];
-        // dbMember.forEach(element => {
-        //   resultList.push(element.dataValues.Group.dataValues.name);
-        // });
+      }).then(function (dbMember) {
+        let resultList = [];
+        let groupList = [];
+        dbMember.forEach(element => {
+          resultList.push(element.dataValues.Group.name);
+        });
+        dbMember.forEach(element => {
+          groupList.push(element.dataValues.Group.id);
+        })
+        console.log("below is group name list for logged in user");
+        console.log(resultList);
+        console.log("below is group id# list for logged in user");
+        console.log(groupList);
+        // Create member object for members.handlebars rendering //
+        let memberObject = {
+          email: req.user.email,
+          displayname: req.user.display_name,
+          groups: resultList,
+          groupNums: groupList
+          };
+        console.log("below is log of member object");
+        console.log(memberObject);
+        // render members.handlebars page and populate with memberObject //
+        res.render("members", memberObject);
+      });
+    };
+  })
 
-        console.log(dbMember);
-        res.json(dbMember);
-      })
-    }
-  });
+   
+
 
 
 // Route for getting all picks for a specific member on a specific week
@@ -117,6 +134,7 @@ app.get("/api/user_picks/:memid/:week", function(req, res) {
   
   let member_id = req.params.memid;
   console.log("member id is " + member_id);
+
 
   db.Pick.findAll({
     where: {
@@ -127,6 +145,7 @@ app.get("/api/user_picks/:memid/:week", function(req, res) {
     res.json(dbPick);
   })
 });
+
 
 
 // Route for getting all picks for a specific member for all weeks
@@ -173,6 +192,11 @@ app.get("/api/group_users/:id", function(req, res) {
   })
 });
 
+        // console.log(resultList);
+        res.json(dbPick);
+      })
+    }
+  });
 
 // route to return a specific week's schedule
 app.get("/api/week_schedule/:week", function(req, res) {
@@ -191,6 +215,31 @@ app.get("/api/week_schedule/:week", function(req, res) {
 
 });
 
+
+//GET request to render League page /////
+app.get("/league/:groupId:loggedin_id", function(req, res){
+  console.log("api route /league/:groupId is FIRING")
+  let loggedin_id = req.params.loggedin_id;
+  console.log("loggedin_id is " + loggedin_id);
+  let groupId = req.params.groupId;
+  console.log("groupId is " + groupId);
+
+    db.Group.findOne({
+      where: {
+        id: groupId
+      }
+    }).then(function(dbGroup) {
+      console.log("*******log of dbGroup below");
+      console.log(dbGroup);
+
+      let leagueObject = {
+        name: dbGroup.dataValues.name
+      }
+      console.log(leagueObject);
+      res.render("league", leagueObject);
+    })
+  
+})
 
 // route to return the entire season's schedule
 app.get("/api/schedule/", function(req, res) {
@@ -245,73 +294,101 @@ app.get("/api/get_memberID/:id/:gid", function(req, res) {
 
 
 
-// POST ROUTES
 
-// add a new group
-// input is an object with a name value
-app.post("/api/group", function(req, res) {
-  console.log("post /api/groups/ route");
-  console.log(req.body);
+  // POST ROUTES
 
-  db.Group.create(req.body).then(function(dbGroup) {
-    res.json(dbGroup);
+  // POST request to create a new league and add to database //
+  app.post("/api/group", function (req, res) {
+    console.log("The create a new group api is FIRING");
+    db.User.findAll({
+    })
+    db.Group.create({
+      name: req.body.name
+    })
+    .then(function () {
+
+      let groupObject = {
+        name: req.body.name
+      }
+      console.log("Below is the log of the newly created groupObject");
+      console.log(groupObject);
+      res.json(groupObject);
+    });
   });
-});
 
-// add a new group member
-// input is an object with "user_id" and "GroupId" keys
-app.post("/api/member", function(req, res) {
-  console.log("post /api/member/ route");
-  console.log(req.body);
+  // GET route to retrun all group table data
+  app.get("/api/groups/:name", function(req, res) {
+    console.log("/api/groups/:name route is FIRING!");
+    // Query to search groups table where name matches params.name data //
+    db.Group.findAll({
+      where: {
+        name: req.params.name
+      }
+    }).then(function(dbGroup) {
+      console.log("Below is the log of the data being returned to client")
+      console.log(dbGroup);
+      res.json(dbGroup);
+    })
+  })
 
-  db.Member.create(req.body).then(function(dbMember) {
-    res.json(dbMember);
+
+  // add a new group member
+  // input is an object with "user_id" and "GroupId" keys
+  app.post("/api/member", function (req, res) {
+    console.log("post /api/member/ route");
+    console.log(req.body);
+
+    db.Member.create(req.body).then(function (dbMember) {
+      res.json(dbMember);
+
+    });
   });
-});
 
-// add a new pick
-// input is an object with "week", "game_number","prediction" and "MemberId" keys
-app.post("/api/pick", function(req, res) {
-  console.log("post /api/pick/ route");
-  console.log(req.body);
 
-  db.Pick.create(req.body).then(function(dbPick) {
-    res.json(dbPick);
+
+  // add a new pick
+  // input is an object with "week", "game_number","prediction" and "MemberId" keys
+  app.post("/api/pick", function (req, res) {
+    console.log("post /api/pick/ route");
+    console.log(req.body);
+
+    db.Pick.create(req.body).then(function (dbPick) {
+      res.json(dbPick);
+    });
   });
-});
 
 
-// add a new result
-// input is an object with "week", "game_number", "winner", "winner_name", and "loser_name" keys
-app.post("/api/result", function(req, res) {
-  console.log("post /api/result/ route");
-  console.log(req.body);
+  // add a new result
+  // input is an object with "week", "game_number", "winner", "winner_name", and "loser_name" keys
+  app.post("/api/result", function (req, res) {
+    console.log("post /api/result/ route");
+    console.log(req.body);
 
-  db.Result.create(req.body).then(function(dbResult) {
-    res.json(dbResult);
+    db.Result.create(req.body).then(function (dbResult) {
+      res.json(dbResult);
+    });
   });
-});
 
 
-// DELETE ROUTES
+  // DELETE ROUTES
 
-app.delete("/api/delete_group/:id", function(req, res) {
-  console.log("Made it to delete group function");
-  
-  db.Group.destroy({
-    where: {
-      id: req.params.id
-    }
-  }).then(function(dbPost) {
-    res.json(dbPost);
+  app.delete("/api/delete_group/:id", function (req, res) {
+    console.log("Made it to delete group function");
+
+    db.Group.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbPost) {
+      res.json(dbPost);
+    });
   });
-});
 
 
 
   // PUT ROUTES
 
-  app.put("/api/update_user_dn/:id", function(req, res) {
+  app.put("/api/update_user_dn/:id", function (req, res) {
 
     console.log("The user id being modified is: " + req.params.id);
     console.log("req.body" + req.body);
