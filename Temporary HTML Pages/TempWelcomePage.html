@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" style="margin-left: 50px;">
+<html lang="en" id="tempWelcomeHTMLPage">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Linking in our own CSS style sheet: -->
-    <link type="text/css" rel="stylesheet" href="./css/TempHtmlFilesStyle.css"/>
-
+   
     <title>Temporary "Welcome page" html</title>
 </head>
 <body>
+     <!-- Linking in our own CSS style sheet: -->
+   <!--  <link type="text/css" rel="stylesheet" href="../public/assets/stylesheets/style.css"/> -->
+
     <h4>Temporary HTML of the "Welcome page"</h4>
     <h1>-----------------------------------------</h1>
     <br>
-    <h1>Welcome <users>{{user_name}}!</users></h1>
-    <a href="./TempMember1Page.html"><members>{{Member Name Here}}</members></a><br>
-    <a href="./TempGroup1Page.html"><groups>{{Group name here. clicking here will bring you to the page which shows your specific group (aka league) and all those other group memebers' scores/results.}}</groups></a><br>
+    <h1>Welcome <users>user_name!</users></h1>
+    <a href="./TempMember1Page.html"><members>Member Name Here</members></a><br>
+    <a href="./TempGroup1Page.html"><groups>Group name here. clicking here will bring you to the page which shows your specific group (aka league) and all those other group memebers' scores/results.</groups></a><br>
     <br>
 
-    <a href="./TempMember1Page.html"><members>{{Member Name #2 Here}}</members></a><br>
-    <a href="./TempGroup1Page.html"><groups>{{Group Name #2 here.}}</groups></a><br>
+    <a href="./TempMember1Page.html"><members>Member Name #2 Here</members></a><br>
+    <a href="./TempGroup1Page.html"><groups>Group Name #2 here.</groups></a><br>
     <br>
     <h3>By the way, I envision almost all "Go Back" links to route back to this page.</h3>
     <div id="allMembersResults"></div>

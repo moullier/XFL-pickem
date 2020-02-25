@@ -45,3 +45,19 @@ table {
       background-color: #ff9d00b0; 
       display: inline
   }
+
+#mainHandlebarsBody {
+  /* This was just making sure a photo for the background showed up. ignore for now. -sam */
+  /* background-color: aquamarine;
+  background-image: url("../img/backgroundAllTeams.jpg");
+  background-size: cover;
+  background-repeat: repeat; */
+}
+
+#tempWelcomeHTMLPage {
+  background-color: aquamarine;
+  background-image: url("../img/backgroundAllTeams.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  /* background-blend-mode: hard-light; */
+}
