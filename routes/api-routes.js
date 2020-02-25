@@ -192,12 +192,6 @@ app.get("/api/group_users/:id", function(req, res) {
   })
 });
 
-        // console.log(resultList);
-        res.json(dbPick);
-      })
-    }
-  });
-
 // route to return a specific week's schedule
 app.get("/api/week_schedule/:week", function(req, res) {
 

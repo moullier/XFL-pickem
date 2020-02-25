@@ -36,7 +36,7 @@ $(document).ready(function() {
       // $(".group-names").append(newList);
     });
   });
-});
+
 
 function getGroups() {
   $.get("/api/user_members/" + loggedin_id).then(function(data) {
@@ -131,4 +131,5 @@ $(document).on("click", "#newGroup-btn", function() {
     window.location = "/groups";
     console.log("get request sent to redirect to create league page")
   })
+})
 })
