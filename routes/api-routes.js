@@ -80,49 +80,53 @@ module.exports = function (app) {
 
 
 
-    // GET ROUTE - collects user data: email, display name, user id, and groups to which they belong //
-    app.get("/api/user_members/:id", function (req, res) {
-    console.log("The api/user_members/ route is FIRING!");
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      let user_id = req.params.id;
-      console.log("user_id is " + user_id);
-      console.log("user email is " + req.user.email);
-      console.log("below is table join: match on user id from members table and all of groups table");
-      db.Member.findAll({
-        where: {
-          UserId: req.params.id
-        },
-        include: [db.Group]
-      }).then(function (dbMember) {
-        let resultList = [];
-        let groupList = [];
-        dbMember.forEach(element => {
-          resultList.push(element.dataValues.Group.name);
+     // GET ROUTE - collects user data: email, display name, user id, and groups to which they belong //
+     app.get("/api/user_members/:id", function (req, res) {
+      console.log("The api/user_members/ route is FIRING!");
+      if (!req.user) {
+        // The user is not logged in, send back an empty object
+        res.json({});
+      } else {
+        let user_id = req.params.id;
+        console.log("user_id is " + user_id);
+        console.log("user email is " + req.user.email);
+        console.log("below is table join: match on user id from members table and all of groups table");
+        db.Member.findAll({
+          where: {
+            UserId: req.params.id
+          },
+          include: [db.Group]
+        }).then(function (dbMember) {
+          let resultList = [];
+          let groupList = [];
+
+          dbMember.forEach(element => {
+            console.log(element.GroupId);
+            let resultPair = [];
+            resultPair[0] = element.dataValues.Group.name;
+            resultPair[1] = element.dataValues.Group.id;
+            resultList.push(resultPair);
+          })
+          console.log("below is group name and group id# list for logged in user");
+          console.log(resultList);
+          // console.log("below is group id# list for logged in user");
+          // console.log(groupList);
+  
+          
+          // Create member object for members.handlebars rendering //
+          let memberObject = {
+            email: req.user.email,
+            displayname: req.user.display_name,
+            groups: resultList
+            // groupNums: groupList
+            };
+          console.log("below is log of member object");
+          console.log(memberObject);
+          // render members.handlebars page and populate with memberObject //
+          res.render("members", memberObject);
         });
-        dbMember.forEach(element => {
-          groupList.push(element.dataValues.Group.id);
-        })
-        console.log("below is group name list for logged in user");
-        console.log(resultList);
-        console.log("below is group id# list for logged in user");
-        console.log(groupList);
-        // Create member object for members.handlebars rendering //
-        let memberObject = {
-          email: req.user.email,
-          displayname: req.user.display_name,
-          groups: resultList,
-          groupNums: groupList
-          };
-        console.log("below is log of member object");
-        console.log(memberObject);
-        // render members.handlebars page and populate with memberObject //
-        res.render("members", memberObject);
-      });
-    };
-  })
+      };
+    })
 
    
 

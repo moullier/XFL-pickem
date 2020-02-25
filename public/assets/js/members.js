@@ -20,21 +20,21 @@ $(document).ready(function() {
     console.log(typeof(loggedin_id));
 
 
-    // get groups //
-    $.get("/api/user_members/" + loggedin_id).then(function(data) {
-      console.log("below is the get groups data object");
-      console.log(data[0].Group.name);
-      // window.location.replace("/members");
+    // // get groups //
+    // $.get("/api/user_members/" + loggedin_id).then(function(data) {
+    //   console.log("below is the get groups data object");
+    //   console.log(data[0].Group.name);
+    //   window.location.replace("/members");
 
-      // let newList = $("<ul>");
-      // data.forEach(element => {
-      //   let newGroup = $("<li>");
-      //   newGroup.text(element.Group.name);
-      //   newList.append(newGroup);
-      // });
+    //   let newList = $("<ul>");
+    //   data.forEach(element => {
+    //     let newGroup = $("<li>");
+    //     newGroup.text(element.Group.name);
+    //     newList.append(newGroup);
+    //   });
 
-      // $(".group-names").append(newList);
-    });
+    //   $(".group-names").append(newList);
+    // });
   });
 
 
@@ -113,12 +113,11 @@ $(document).on("click", "#makePicks-btn", function() {
 
 // click listener on the list of groups that the user is a member of
 // clicking one takes the user to the league page
-$(document).on("click", ".groupText", function() {
+$(document).on("click", ".league-btn", function() {
 
-  let groupId = $(this).attr("gid")
+  let groupId = $(this).attr("data-id")
   $.get("/league/" + groupId, function(req) {
     window.location = "/league/" + groupId;
-    console.log("get request sent to redirect to create picks page")
   });
 });
 

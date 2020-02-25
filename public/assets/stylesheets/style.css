@@ -90,3 +90,8 @@ table {
   background-repeat: repeat;
   min-height: 100vh;
 }
+
+/* Maria's little CSS */
+#newGroup-btn {
+  margin-top: 10px;
+}

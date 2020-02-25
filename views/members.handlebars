@@ -14,10 +14,11 @@
 <div class="col-10 offset-1" id="body-box-members"> 
   {{!-- .col-10.offset-1#body-box-members --}}
 
+
     <div id="group-info">
       {{#each groups}}
-      <button data-id="{{this.groupNums}}" data-name="{{this.groups}}">View League</button>
-      <h1 class="group-name">{{this}}</h1>
+      <h1 class="group-name">{{this.[0]}}</h1>
+      <button class="btn btn-primary league-btn" data-id="{{this.[1]}}" data-name="{{this.[0]}}">View League</button>
       {{/each}}
     </div>
 
@@ -31,27 +32,10 @@
 
 
     <br><button style="font-size: larger;"> <a href="./TempLogin.html">go back to login page</a></button>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome {{email}} <span class="member-name"></span> (<span class="member-email"></span>)</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h3>Group Membership</h3>
-        <h4><span class="group-names"></span></h4>
-        <button type="button" id="picks-btn" class="btn btn-primary">Get My Picks</button>
-        <button type="button" id="displayname-btn" class="btn btn-primary">Set Display Name</button>
-        <input class="form-control" id="name_field" type="text" placeholder="Enter display name">
-        <h5><span id="picks-list"></span></h5>
-      </div>
-    </div>    
-  </div>
 </div>
 <div id="bottom-spacer"></div>
 </div>
-</div>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="/assets/js/members.js"></script>

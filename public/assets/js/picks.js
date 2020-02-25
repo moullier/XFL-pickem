@@ -53,11 +53,13 @@ function dropdownClicked() {
             console.log("The game started! This week is locked!")
             $("#lockStatus").text(" - Picks are Locked")
             $("#submit-btn").hide();
+            $(".pick-btn").hide();
             week_locked = true;
         } else {
             console.log("Week isn't completed yet")
             $("#lockStatus").text(" - Open for Picks")
             $("#submit-btn").show();
+            $(".pick-btn").show();
             week_locked = false;
         }
 
@@ -91,7 +93,20 @@ function dropdownClicked() {
                         team = data[element.game_number - 1].away_name;
                     }
 
+                    // check to see if week is completed and color code picks right/wrong if so
+                    if(week_locked) {
+                        console.log(data);
+                        let winner = data[element.game_number - 1].winner;
+                        if(prediction == winner) {
+                            $(pickString).css("background-color", "#90ee90");
+                        } else {
+                            $(pickString).css("background-color", "#ffcccb");
+                            $(pickString).css("text-decoration", "line-through");
+                        }
+                    }
+
                     $(pickString).text(team);
+
                 });
             }
         });
@@ -112,11 +127,15 @@ function resetPage() {
     console.log("picksEntered = ");
     console.log(picksEntered);
 
-
-    for(let i = 1; i < 5; i++) {
-        let pickString = "#gm" + i + "pick";
-        $(pickString).text("");
+    $("#gm1pick").css("background-color", "#ffffff");
+    $("#gm2pick").css("background-color", "#ddddd3");
+    $("#gm3pick").css("background-color", "#ffffff");
+    $("#gm4pick").css("background-color", "#ddddd3");
+    for(let i = 1; i<5; i++) {
+        $(`#gm${i}pick`).css("text-decoration", "none");
+        $(`#gm${i}pick`).text("");
     }
+
 }
 
 $(document).on("click", ".pick-btn", registerPick);
