@@ -42,6 +42,7 @@ module.exports = function(app) {
 
   // Route to redirct user to /groups page to create new league //
   app.get("/groups", function(req,res) {
+    console.log("GET request to take user to page to create new league(/groups) is FIRING!")
     res.render("groups");
   });
 
@@ -80,53 +81,6 @@ module.exports = function(app) {
 
     res.render("league", hbsObj);
   });
-
-
-
-///// I don't think code below is needed - this all happens in api routes /////
-
-  // app.get("/member_page/:id", function(req, res) {
-  //   if (!req.user) {
-  //     // The user is not logged in, send back an empty object
-  //     res.json({});
-  //   } else {
-
-  //     let user_id = req.params.id;
-  //     console.log("user_id is " + user_id);
-
-  //     db.Member.findAll({
-  //       where: {
-  //         UserId: req.params.id
-  //       },
-  //       include: [db.Group]
-  //     }).then(function(dbMember) {
-  //       console.log(dbMember);
-  //       let resultList = [];
-  //       dbMember.forEach(element => {
-  //         resultList.push(element.dataValues.Group.dataValues.name);
-  //       });
-
-  //       console.log(resultList);
-
-  //       let membersObject = {
-  //         email: req.user.email,
-  //         displayname: req.user.display_name,
-  //         groups: resultList
-  //       };
-  //       console.log(membersObject);
-  //       console.log(membersObject.displayname);
-  //       res.render("members", {membersObject});
-  //     })
-  //   }
-  // });
-
-
-
-
-
-
-
-
 
 };
 

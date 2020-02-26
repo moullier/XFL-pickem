@@ -1,6 +1,7 @@
 // global variables
 let groupID, memberID, groupName, loggedInUserID;
 let scoreArray;
+let addMemberBtn = $("#addMember-btn");
 
 // on page load
 $(document).ready(function() {
@@ -133,10 +134,14 @@ $(document).on("click", "#makePicks-btn", function() {
     });
   });
 
+  /////  Add new members to group ///////
 
-
-    newMemberBtn.on("click", function () {
-        let newGroupMember = $("#user-input").val().trim();
+    addMemberBtn.on("click", function () {
         console.log("new member button is working!")
-        console.log(newGroupMember);
+        let newMemberEmail = $("#newMember-input").val().trim();
+        groupID = parseInt($("#groupTitle").attr("value"));
+        console.log(newMemberEmail);
+        $.get("/api/member/" + newMemberEmail).then(function (data) {
+            console.log(data);
+        })
     })
