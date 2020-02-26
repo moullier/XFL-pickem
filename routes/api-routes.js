@@ -97,7 +97,6 @@ module.exports = function (app) {
           include: [db.Group]
         }).then(function (dbMember) {
           let resultList = [];
-          let groupList = [];
 
           dbMember.forEach(element => {
             console.log(element.GroupId);
@@ -126,9 +125,6 @@ module.exports = function (app) {
         });
       };
     })
-
-   
-
 
 
 // Route for getting all picks for a specific member on a specific week
@@ -195,7 +191,7 @@ app.get("/api/group_users/:id", function(req, res) {
   })
 });
 
-// Get request to search user data base for email match to add member to group //
+// Get request to search user data base for email match //
 app.get("/api/member/:newMemberEmail", function(req, res) {
   console.log("The /api/member/:newMemberEmail route is FIRING!");
   let newGroupMember = req.params.newMemberEmail;
@@ -352,6 +348,7 @@ app.get("/api/get_memberID/:id/:gid", function(req, res) {
 
     db.Member.create(req.body).then(function (dbMember) {
       res.json(dbMember);
+      console.log("new member added to group");
 
     });
   });
