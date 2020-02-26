@@ -72,7 +72,6 @@ module.exports = function (app) {
         id: req.params.gid
       }
     }).then(function(dbGroup) {
-      console.log(dbGroup);
       res.json(dbGroup);
     })
 
@@ -168,8 +167,8 @@ app.get("/api/user_picks/:memid", function(req, res) {
 // Get route to return all users in a group
 app.get("/api/group_users/:id", function(req, res) {
   console.log("hit the group_users get route");
-  console.log(req.data);
-  console.log(req);
+  // console.log(req.data);
+  // console.log(req);
 
   let group_id = req.params.id;
   console.log("/api/group_users on the server: ");
@@ -192,11 +191,23 @@ app.get("/api/group_users/:id", function(req, res) {
   })
 });
 
-        // console.log(resultList);
-        res.json(dbPick);
-      })
+// Get request to search user data base for email match to add member to group //
+app.get("/api/member/:newMemberEmail", function(req, res) {
+  console.log("The /api/member/:newMemberEmail route is FIRING!");
+  let newGroupMember = req.params.newMemberEmail;
+  console.log("the email sent through path params is " + newGroupMember);
+
+  db.User.findAll({
+    where: {
+      email: req.params.newMemberEmail
     }
-  });
+  }).then(function(dbUser) {
+    console.log("new member data returned to client");
+    res.json(dbUser)
+    }
+  })
+})
+
 
 // route to return a specific week's schedule
 app.get("/api/week_schedule/:week", function(req, res) {
@@ -286,7 +297,6 @@ app.get("/api/get_memberID/:id/:gid", function(req, res) {
     }
   }).then(function(dbMember) {
 
-    console.log(dbMember);
     res.json(dbMember);
   })
 });
@@ -325,8 +335,6 @@ app.get("/api/get_memberID/:id/:gid", function(req, res) {
         name: req.params.name
       }
     }).then(function(dbGroup) {
-      console.log("Below is the log of the data being returned to client")
-      console.log(dbGroup);
       res.json(dbGroup);
     })
   })
