@@ -19,11 +19,13 @@ module.exports = function(sequelize, DataTypes) {
       // ******  Had to comment out code below - broke members.handlebars page 
 
       // userId of commissioner
-      // Group.belongsTo(models.User, {
-      //   foreignKey: {
-      //     allowNull: false
-      //   }
-      // });
+
+      // I uncommented it out, so hopefully I'm not causing problems :)
+      Group.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false
+        }
+      });
     };
 
     return Group;

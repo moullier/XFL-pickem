@@ -47,3 +47,10 @@ insert into schedules (week, game_number, winner, home_name, away_name, game_occ
 insert into schedules (week, game_number, winner, home_name, away_name, game_occurred, createdAt, updatedAt) values (10, 2, null, 'Seattle Dragons', 'Houston Roughnecks', false, now(), now());
 insert into schedules (week, game_number, winner, home_name, away_name, game_occurred, createdAt, updatedAt) values (10, 3, null, 'St. Louis BattleHawks', 'DC Defenders', false,  now(), now());
 insert into schedules (week, game_number, winner, home_name, away_name, game_occurred, createdAt, updatedAt) values (10, 4, null, 'Tampa Bay Vipers', 'NY Guardians', false, now(), now());
+
+
+-- Update for week 3 results (I'll probably edit these into the above later, but this works for now)
+UPDATE `schedules` SET winner = 0, game_occurred = 1 WHERE id = 9;
+UPDATE `schedules` SET winner = 0, game_occurred = 1 WHERE id = 10;
+UPDATE `schedules` SET winner = 1, game_occurred = 1 WHERE id = 11;
+UPDATE `schedules` SET winner = 1, game_occurred = 1 WHERE id = 12;

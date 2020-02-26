@@ -1,10 +1,13 @@
 <body>
 <div class="container">
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         <h2 value="{{groupID}}" id="groupTitle"></h2>
     </div>
+    <div class ="row d-flex justify-content-center">
+        <h3>Season Scores</h3>
+    </div>
     <div class="row" id="memberScoreList">
-        <div class="col-12 col-md-8 offset-md-2">
+        <div class="col-12 col-md-8 offset-md-2 d-flex justify-content-center">
             <table class="table table-bordered">
             <thead>
                 <tr>
@@ -13,6 +16,33 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
+            </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <h3>Correct Picks By Week</h3>
+    </div>
+    <div class="row" id="memberScoresByWeek">
+        <div class="col-12 col-md-8 offset-md-2 d-flex justify-content-center">
+
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                <th scope="col">Member</th>
+                <th scope="col">Week 1</th>
+                <th scope="col">Week 2</th>
+                <th scope="col">Week 3</th>
+                <th scope="col">Week 4</th>
+                <th scope="col">Week 5</th>
+                <th scope="col">Week 6</th>
+                <th scope="col">Week 7</th>
+                <th scope="col">Week 8</th>
+                <th scope="col">Week 9</th>
+                <th scope="col">Week 10</th>
+                </tr>
+            </thead>
+            <tbody id="weeklyTableBody">
             </tbody>
             </table>
         </div>
