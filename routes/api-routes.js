@@ -167,8 +167,6 @@ app.get("/api/user_picks/:memid", function(req, res) {
 // Get route to return all users in a group
 app.get("/api/group_users/:id", function(req, res) {
   console.log("hit the group_users get route");
-  // console.log(req.data);
-  // console.log(req);
 
   let group_id = req.params.id;
   console.log("/api/group_users on the server: ");
@@ -340,18 +338,40 @@ app.get("/api/get_memberID/:id/:gid", function(req, res) {
   })
 
 
-  // add a new group member
+  // add a new group member from the page to add a new league
   // input is an object with "user_id" and "GroupId" keys
   app.post("/api/member", function (req, res) {
     console.log("post /api/member/ route");
     console.log(req.body);
 
-    db.Member.create(req.body).then(function (dbMember) {
+    db.Member.create(req.body
+      ).then(function (dbMember) {
       res.json(dbMember);
-      console.log("new member added to group");
+      console.log("league creator added to group");
 
     });
   });
+
+  // Similar to above POST - this also adds a new member to a group once it's been created.
+  // The difference from above POST request is that this one will query members table to make sure that member to be added 
+  // isn't already a member.
+  // input is an object with groupID and newMemberUserId
+
+  app.post("/api/new_member/", function (req, res) {
+    console.log("post /api/new_member/ route")
+    console.log(req.body);
+
+    db.Member.findOrCreate({
+      where: {
+        GroupId: req.body.GroupId,
+        UserId: req.body.UserId
+      }
+    }
+    ).then(function (dbMember) {
+      res.json(dbMember);
+      console.log("new member added to group");
+    })
+  })
 
 
 

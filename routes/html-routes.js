@@ -61,7 +61,7 @@ module.exports = function(app) {
   // Route to load picks page -- we could pass in the week here and preload the requested
   // (or current?) week possibly?
   app.get("/picks/:gid", function(req,res) {
-    console.log("The id passed in to render the page is " + req.params.gid);
+    console.log("(from /picks/:gid) The id passed in to render the page is " + req.params.gid);
     
     let hbsObj = {
       groupID: req.params.gid
@@ -73,7 +73,7 @@ module.exports = function(app) {
     // Route to load picks page -- we could pass in the week here and preload the requested
   // (or current?) week possibly?
   app.get("/league/:gid", function(req,res) {
-    console.log("The id passed in to render the page is " + req.params.gid);
+    console.log("(from /league/:gid) The id passed in to render the page is " + req.params.gid);
     
     let hbsObj = {
       groupID: req.params.gid
