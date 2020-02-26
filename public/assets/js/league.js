@@ -137,6 +137,9 @@ $(document).ready(function () {
         $.get("/api/member/" + newMemberEmail)
             .then(function (data) {
                 console.log(data);
+                if(data.length == [0]) {
+                    alert("User not found. Please try again.")
+                }
                 let newMemberUserId = data[0].id;
                 console.log("the new member user id is " + newMemberUserId);
 
@@ -161,6 +164,7 @@ $(document).ready(function () {
                                     console.log("Updated league page shoule be rendered.");
                                     // league page will be refreshed and new member will be updated.
                                     window.location = "/league/" + groupId + loggedin_id;
+
                                 })
                         });
                 })
