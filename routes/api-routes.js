@@ -72,64 +72,10 @@ module.exports = function (app) {
         id: req.params.gid
       }
     }).then(function(dbGroup) {
-      console.log(dbGroup);
       res.json(dbGroup);
     })
 
   });
-
-
-
-     // GET ROUTE - collects user data: email, display name, user id, and groups to which they belong //
-     app.get("/api/user_members/:id", function (req, res) {
-      console.log("The api/user_members/ route is FIRING!");
-      if (!req.user) {
-        // The user is not logged in, send back an empty object
-        res.json({});
-      } else {
-        let user_id = req.params.id;
-        console.log("user_id is " + user_id);
-        console.log("user email is " + req.user.email);
-        console.log("below is table join: match on user id from members table and all of groups table");
-        db.Member.findAll({
-          where: {
-            UserId: req.params.id
-          },
-          include: [db.Group]
-        }).then(function (dbMember) {
-          let resultList = [];
-          let groupList = [];
-
-          dbMember.forEach(element => {
-            console.log(element.GroupId);
-            let resultPair = [];
-            resultPair[0] = element.dataValues.Group.name;
-            resultPair[1] = element.dataValues.Group.id;
-            resultList.push(resultPair);
-          })
-          console.log("below is group name and group id# list for logged in user");
-          console.log(resultList);
-          // console.log("below is group id# list for logged in user");
-          // console.log(groupList);
-  
-          
-          // Create member object for members.handlebars rendering //
-          let memberObject = {
-            email: req.user.email,
-            displayname: req.user.display_name,
-            groups: resultList
-            // groupNums: groupList
-            };
-          console.log("below is log of member object");
-          console.log(memberObject);
-          // render members.handlebars page and populate with memberObject //
-          res.render("members", memberObject);
-        });
-      };
-    })
-
-   
-
 
 
 // Route for getting all picks for a specific member on a specific week
@@ -172,8 +118,6 @@ app.get("/api/user_picks/:memid", function(req, res) {
 // Get route to return all users in a group
 app.get("/api/group_users/:id", function(req, res) {
   console.log("hit the group_users get route");
-  console.log(req.data);
-  console.log(req);
 
   let group_id = req.params.id;
   console.log("/api/group_users on the server: ");
@@ -195,6 +139,24 @@ app.get("/api/group_users/:id", function(req, res) {
     res.json(dbUser);
   })
 });
+
+// Get request to search user data base for email match //
+app.get("/api/member/:newMemberEmail", function(req, res) {
+  console.log("The /api/member/:newMemberEmail route is FIRING!");
+  let newGroupMember = req.params.newMemberEmail;
+  console.log("the email sent through path params is " + newGroupMember);
+
+  db.User.findAll({
+    where: {
+      email: req.params.newMemberEmail
+    }
+  }).then(function(dbUser) {
+    console.log("new member data returned to client");
+    res.json(dbUser)
+    })
+  })
+
+
 
 // route to return a specific week's schedule
 app.get("/api/week_schedule/:week", function(req, res) {
@@ -284,7 +246,6 @@ app.get("/api/get_memberID/:id/:gid", function(req, res) {
     }
   }).then(function(dbMember) {
 
-    console.log(dbMember);
     res.json(dbMember);
   })
 });
@@ -324,24 +285,45 @@ app.get("/api/get_memberID/:id/:gid", function(req, res) {
         name: req.params.name
       }
     }).then(function(dbGroup) {
-      console.log("Below is the log of the data being returned to client")
-      console.log(dbGroup);
       res.json(dbGroup);
     })
   })
 
 
-  // add a new group member
+  // add a new group member from the page to add a new league
   // input is an object with "user_id" and "GroupId" keys
   app.post("/api/member", function (req, res) {
     console.log("post /api/member/ route");
     console.log(req.body);
 
-    db.Member.create(req.body).then(function (dbMember) {
+    db.Member.create(req.body
+      ).then(function (dbMember) {
       res.json(dbMember);
+      console.log("league creator added to group");
 
     });
   });
+
+  // Similar to above POST - this also adds a new member to a group once it's been created.
+  // The difference from above POST request is that this one will query members table to make sure that member to be added 
+  // isn't already a member.
+  // input is an object with groupID and newMemberUserId
+
+  app.post("/api/new_member/", function (req, res) {
+    console.log("post /api/new_member/ route")
+    console.log(req.body);
+
+    db.Member.findOrCreate({
+      where: {
+        GroupId: req.body.GroupId,
+        UserId: req.body.UserId
+      }
+    }
+    ).then(function (dbMember) {
+      res.json(dbMember);
+      console.log("new member added to group");
+    })
+  })
 
 
 

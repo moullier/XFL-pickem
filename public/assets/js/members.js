@@ -105,6 +105,8 @@ $(document).on("click", "#settingsLink",  function() {
 // Adding a click event listener to picks-btn
 $(document).on("click", "#displayname-btn", setName);
 
+
+
 $(document).on("click", "#makePicks-btn", function() {
   console.log("makePicks button is working!");
   $.get("/picks", function(req) {

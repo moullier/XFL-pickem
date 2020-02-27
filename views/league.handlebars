@@ -1,6 +1,8 @@
 <body>
 <div class="container">
     <div class="row d-flex justify-content-center">
+    <div class="row">
+        <h2>Welcome, </h2>
         <h2 value="{{groupID}}" id="groupTitle"></h2>
     </div>
     <div class ="row d-flex justify-content-center">
@@ -9,6 +11,7 @@
     <div class="row" id="memberScoreList">
         <div class="col-12 col-md-8 offset-md-2 d-flex justify-content-center">
             <table class="table table-bordered">
+                
             <thead>
                 <tr>
                 <th scope="col">Member</th>
@@ -50,6 +53,19 @@
     <div class="row">
         <div class="col-12 col-md-8 offset-md-2">
             <button id="makePicks-btn" class="btn btn-primary" value="{{groupID}}">Make Picks!</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-8 mt-100">
+            <h4>Enter the user's email address to add a member to this group</h4>
+        </div>
+        <div class="col-12 col-md-8">
+            <input type="text" id="newMember-input">
+        </div>
+        <div class="col-12 col-md-8">
+            <button id="addMember-btn" class="btn btn-primary">Add Members</button>
+        </div>
         </div>
     </div>
 </div>
