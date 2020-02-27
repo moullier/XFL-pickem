@@ -24,22 +24,21 @@ $(document).ready(function () {
                 $.get("api/groups/" + newGroup).then(function (data) {
                     console.log("Below is the log of the data being returned from the server");
                     console.log(data);
-                    let groupId = data[0].id;
+                    let gid = data[0].id;
                     console.log("below is group id");
-                    console.log(groupId);
-                    console.log("below is the group id");
-                    console.log(data[0].id);
+                    console.log(gid);
                 
                     //POST request will add the user who created the group as a member of that group//
                     $.post("/api/member", {
-                        GroupId: groupId,
+                        GroupId: gid,
                         UserId: loggedin_id
                     })
-                    $.get("/league/", function () {
-
+                    $.get("/league/" + gid, function (req) {
+                        window.location = "/league/" + gid;
+                    })
                     })
                 })
                
             })
     })
-})
+

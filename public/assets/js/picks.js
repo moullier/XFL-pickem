@@ -145,6 +145,8 @@ function registerPick() {
     let pick = $(this).attr("pick");
 
     console.log("pickedGame = " + pickedGame);
+
+    
     console.log("pick = " + pick);
 
     if(pick == "home") {
