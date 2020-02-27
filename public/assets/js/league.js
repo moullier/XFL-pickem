@@ -207,4 +207,3 @@ function calculateWeeklyScores(memberID, userName, commissioner) {
                         });
                 })
             })
-    })

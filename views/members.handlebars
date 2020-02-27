@@ -16,12 +16,26 @@
 <div class="col-10 offset-1" id="body-box-members"> 
   {{!-- .col-10.offset-1#body-box-members --}}
 
-<button  id="settingsLink2" class="btn btn-primary">settings</button></li>
     <div id="group-info">
-      {{#each groups}}
-      <h1 class="group-name">{{this.[0]}}</h1>
-      <button class="btn btn-primary league-btn" data-id="{{this.[1]}}" data-name="{{this.[0]}}">View League</button>
-      {{/each}}
+
+      <div class="container">
+        <div class="row">
+          {{#each groups}}
+          <div class="col-md-4 col-12">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{this.[0]}}</h5>
+                  <button class="btn btn-primary league-btn btn-sm" data-id="{{this.[1]}}" data-name="{{this.[0]}}">View League</button>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+        </div>
+      </div>
+ 
+      <h1 class="group-name"></h1>
+
+
     </div>
 
     <div>
