@@ -2,20 +2,52 @@
 <html lang="en">
 
 <head>
-  <title>Passport Authentication</title>
+  <title>XFL Pick'em New User Sign In</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
   <link type="text/html" href="stylesheets/style.css" rel="stylesheet">
+
+<!-- this page remains untouched in the <head>, so none of the css or bootstrap seems to get applied, but I left it this way for reference in case we have to go back. -->
+  <!--BUT I do plan on adding in all the links and stuff just like login.html once we confirm that it doesn't screw everything up.  -->
+
 </head>
 
-<body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-      </div>
+<body><div class="general-whole-page" id="login-whole-page">
+
+  <div class="general-jumbotron jumbotron">
+  <!--Navbar-->
+  <nav class="navbar black mb-4 col-10 offset-1 sam-style-navbar">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#" style="visibility: hidden;"></a>
+    <!-- Collapse button -->
+    <button class="navbar-toggler second-button sam-style-navbar-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
+      aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
+    </button>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent23">
+      <!-- This div added to move the drop down menu items down by 15px to clear the wecome-header comfortabley -Sam -->
+      <div style="visibility: hidden; height: 15px; "></div>
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active justify-content-end">
+          <a class="nav-link sam-navbar-link" href="/login">Members Page (Home)
+          <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active sam-navbar-link" id="settingsLink"  href="/group-settings">Settings</a></li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active sam-navbar-link" id="logout"  href="/logout">Logout</a></li>
+        </li>
+      </ul>
     </div>
   </nav>
+  <!--/.Navbar-->
+  </div> <!-- end of Jumbotron -->
+<div class="general-whole-page" id="signup-whole-page">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
@@ -44,10 +76,11 @@
       </div>
     </div>
   </div>
-
+</div>
+<div class="general-bottom-spacer"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/js/signup.js"></script>
 
-</body>
+</div></body>
 
 </html>
