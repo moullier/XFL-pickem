@@ -1,17 +1,39 @@
-<body>
-    <div class="jumbotron" id="jumbotron-members">    
-  <ul class="nav justify-content-end">
-    {{!-- <div class="container-fluid"> --}}
-      {{!-- <div class="navbar-header"> --}}
-        <li class="nav-item"><a class="nav-link active" id="logout" href="/logout">Logout</a></li>
-      {{!-- </div> --}}
-    {{!-- </div> --}}
-  </ul>
-  {{!-- The click listener on this doesn't work when it's in the nav above for some reason? --}}
-  <span id="settingsLink">Settings</span>
-    
+<body><div class="general-whole-page">
+    <div class="jumbotron general-jumbotron" id="league-jumbotron">    
+<h1 id="welcome-header">Do we want to add something here? -Sam</h1>
+<!--Navbar-->
+<nav class="navbar black mb-4 col-10 offset-1 sam-style-navbar">
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#" style="visibility: hidden;"></a>
+  <!-- Collapse button -->
+  <button class="navbar-toggler second-button sam-style-navbar-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
+    aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
+  </button>
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent23">
+    {{!-- This div added to move the drop down menu items down by 15px to clear the wecome-header comfortabley -Sam --}}
+    <div style="visibility: hidden; height: 15px; "></div>
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active justify-content-end">
+        <a class="nav-link sam-navbar-link" href="/login">Members Page (Home)
+        <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active sam-navbar-link" id="settingsLink"  href="/group-settings">Settings</a></li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active sam-navbar-link" id="logout"  href="/logout">Logout</a></li>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar-->
+
 </div>
-<div class="container">
+<div class="container general-body-box">
     <div class="row d-flex justify-content-center">
     <div class="row">
         <h2>Welcome, </h2>
@@ -81,11 +103,9 @@
         </div>
     </div>
 </div>
-
-
-
-
+<div class="general-bottom-spacer"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="../assets/js/league.js"></script>
+</div>
 </body>
