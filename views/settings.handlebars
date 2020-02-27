@@ -1,7 +1,8 @@
 <body><div id="members-whole-page">
 
-<h1 id="welcome-header">Welcome, {{  displayname}}!</h1>
+
 <div class="jumbotron" id="jumbotron-members">    
+    <h1 id="header">Settings</h1>
   <ul class="nav justify-content-end">
     {{!-- <div class="container-fluid"> --}}
       {{!-- <div class="navbar-header"> --}}
@@ -9,14 +10,12 @@
       {{!-- </div> --}}
     {{!-- </div> --}}
   </ul>
-  {{!-- The click listener on this doesn't work when it's in the nav above for some reason? --}}
-  <span id="settingsLink">Settings</span>
     
 </div>
 <div class="col-10 offset-1" id="body-box-members"> 
   {{!-- .col-10.offset-1#body-box-members --}}
 
-<button  id="settingsLink2" class="btn btn-primary">settings</button></li>
+
     <div id="group-info">
       {{#each groups}}
       <h1 class="group-name">{{this.[0]}}</h1>
@@ -24,21 +23,15 @@
       {{/each}}
     </div>
 
-    <div>
-      <button id="newGroup-btn" class="btn btn-primary">Click Here to Create a new League!</button>
-    </div>
-
 
 
     <div id="allMembersResults"></div>
 
-
-    <br><button style="font-size: larger;"> <a href="./TempLogin.html">go back to login page</a></button>
 </div>
 <div id="bottom-spacer"></div>
 </div>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="/assets/js/members.js"></script>
+  <script type="text/javascript" src="/assets/js/settings.js"></script>
 </div></body>
