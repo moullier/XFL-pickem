@@ -1,3 +1,4 @@
+use database passport_demo;
 insert into schedules (week, game_number, winner, home_name, away_name, game_occurred, createdAt, updatedAt) values (1, 1, true, 'DC Defenders', 'Seattle Dragons', true, now(), now());
 insert into schedules (week, game_number, winner, home_name, away_name, game_occurred, createdAt, updatedAt) values (1, 2, true, 'Houston Roughnecks', 'LA Wildcats', true, now(), now());
 insert into schedules (week, game_number, winner, home_name, away_name, game_occurred, createdAt, updatedAt) values (1, 3, true, 'NY Guardians', 'Tampa Bay Vipers', true,  now(), now());

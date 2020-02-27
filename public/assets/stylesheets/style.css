@@ -99,3 +99,9 @@ table {
 .fa-crown {
   margin-left: 10px;
 }
+
+.Wildcats {
+  content: url("https://i.imgur.com/uS86SGg.jpg");
+  /* height: 20px;
+  width: 30px; */
+}
