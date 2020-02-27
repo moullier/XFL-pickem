@@ -14,9 +14,11 @@ $(document).ready(function () {
         let loggedin_id = localStorage.getItem("loggedin_id");
         console.log("Below is the log of the new group name to be added");
         console.log(newGroup);
+        console.log("loggedin_id is " + loggedin_id);
 
         $.post("/api/group", {
-            name: newGroup
+            name: newGroup,
+            uid: loggedin_id
         })
             .then(function () {
                 console.log("new group post has been sent");

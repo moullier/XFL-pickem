@@ -118,5 +118,18 @@ module.exports = function (app) {
     res.render("league", hbsObj);
   });
 
+    // Route to settings page
+  app.get("/settings/:uid", function(req,res) {
+    console.log("The user id passed in to render the page is " + req.params.uid);
+    
+    let hbsObj = {
+      userID: req.params.uid
+    }
+
+    res.render("settings", hbsObj);
+  });
+
+
+
 };
 

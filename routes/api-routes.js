@@ -262,7 +262,8 @@ app.get("/api/get_memberID/:id/:gid", function(req, res) {
     db.User.findAll({
     })
     db.Group.create({
-      name: req.body.name
+      name: req.body.name,
+      UserId: req.body.uid
     })
     .then(function () {
 
@@ -379,4 +380,26 @@ app.get("/api/get_memberID/:id/:gid", function(req, res) {
       }
     });
   });
+
+
+  // update an already existing pick to a new prediction
+  // input is an object with "id" and "prediction" keys
+  app.put("/api/pick", function (req, res) {
+
+    //console.log("req.body" + req.body);
+
+    console.log("req.body.id = " + req.body.id);
+    console.log("req.body.prediction = " + req.body.prediction);
+    
+    db.Pick.update({ 
+      prediction: req.body.prediction 
+    }, {
+      where: {
+        id: req.body.id
+      }
+    });
+  });
+
+
+
 }

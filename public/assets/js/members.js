@@ -93,11 +93,14 @@ function setName() {
   });
 }
 
-// Adding a click event listener to group-btn
-$(document).on("click", "#group-btn", getGroups);
+// Adding a click event listener to settingsLink
+$(document).on("click", "#settingsLink",  function() {
 
-// Adding a click event listener to picks-btn
-$(document).on("click", "#picks-btn", getPicks);
+  console.log("settings link is working");
+  $.get("/settings/" + loggedin_id, function(req) {
+    window.location = "/settings/" + loggedin_id;
+  });
+});
 
 // Adding a click event listener to picks-btn
 $(document).on("click", "#displayname-btn", setName);

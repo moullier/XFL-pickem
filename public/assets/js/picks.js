@@ -2,6 +2,7 @@
 let current_week, loggedInUserID;
 let groupID, memberID, week_locked;
 let picksEntered = [undefined, undefined, undefined, undefined];
+let weekPicksAlreadyEntered;
 
 // on page load
 $(document).ready(function() {
@@ -83,6 +84,9 @@ function dropdownClicked() {
 
             // presumably, in this case picks exist for this week
             if(pickData.length > 0) {
+
+                weekPicksAlreadyEntered = true;
+
                 pickData.forEach(element => {
                     let pickString = "#gm" + element.game_number + "pick";
                     let prediction = element.prediction
@@ -120,6 +124,9 @@ function resetPage() {
     // reset submit button until all picks selected
     $("#submit-btn").prop('disabled', true);
 
+    // assume picks haven't been entered for this week yet, until we check with the database
+    weekPicksAlreadyEntered = false;
+
     $("#weekTitle").text("Week #" + current_week);
     $("#addPicksResult").text("");
 
@@ -128,9 +135,9 @@ function resetPage() {
     console.log(picksEntered);
 
     $("#gm1pick").css("background-color", "#ffffff");
-    $("#gm2pick").css("background-color", "#ddddd3");
+    $("#gm2pick").css("background-color", "#dddddd");
     $("#gm3pick").css("background-color", "#ffffff");
-    $("#gm4pick").css("background-color", "#ddddd3");
+    $("#gm4pick").css("background-color", "#dddddd");
     for(let i = 1; i<5; i++) {
         $(`#gm${i}pick`).css("text-decoration", "none");
         $(`#gm${i}pick`).text("");
@@ -179,19 +186,55 @@ function submitPicks() {
     // picks are stored in picksEntered as booleans corresponding to each of the four games
 
     console.log(memberID);
+    
+    // if no picks have been entered for this week, we can submit the selections as new picks
+    if(!weekPicksAlreadyEntered) {
 
-    // post all four new pick requests
-    // code is asynchronous so they may not complete in order, but that is okay
-    for(let i = 0; i < 4; i++) {
-        $.post("/api/pick", {
-            "week": current_week,
-            "game_number": i+1,
-            "prediction": picksEntered[i],
-            "MemberId": memberID
-        }).then(function(data) {
-            console.log(data);
+        // post all four new pick requests
+        // code is asynchronous so they may not complete in order, but that is okay
+        for(let i = 0; i < 4; i++) {
+            $.post("/api/pick", {
+                "week": current_week,
+                "game_number": i+1,
+                "prediction": picksEntered[i],
+                "MemberId": memberID
+            }).then(function(data) {
+                console.log(data);
+            })
+        }
+
+        $("#addPicksResult").text("Picks added successfully for week " + current_week)
+    } else {
+        // if picks have already been entered for this member/week, we need to update the picks
+        // rather than create new ones
+
+        console.log("picks have already been made for this week, so we'll have to update");
+        $.get("/api/user_picks/" + memberID + "/" + current_week).then(function(weekPicks) {
+            console.log(weekPicks);
+
+
+            for(let i = 0; i < 4; i++) {
+                if(weekPicks[i].prediction != picksEntered[i]){
+                    console.log("Pick #" + i + " is different! Now it's " + picksEntered[i]);
+                    console.log("weekPick[i].id = " + weekPicks[i].id)
+
+                    let data = {
+                        id: weekPicks[i].id,
+                        prediction: picksEntered[i]
+                    };
+
+                    $.ajax({ url: '/api/pick', method: 'PUT', data:data})
+                    .then(function() {
+                        
+                    });
+                }
+            }
+
+            $("#addPicksResult").text("Picks updated successfully for week " + current_week)
         })
+
+
     }
 
-    $("#addPicksResult").text("Picks added successfully for week " + current_week)
+
 }
