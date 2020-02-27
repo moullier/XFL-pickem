@@ -1,9 +1,17 @@
 <body><div id="groups-whole-page">
-  <div class="jumbotron">
-  <nav class="navbar navbar-default offset-1">
-      <div class="navbar-header">navbar stuff soon to be added here
-      </div>
-  </nav>
+   <div class="jumbotron" id="jumbotron-members">    
+  <ul class="nav justify-content-end">
+    {{!-- <div class="container-fluid"> --}}
+      {{!-- <div class="navbar-header"> --}}
+        <li class="nav-item"><a class="nav-link active" id="logout" href="/logout">Logout</a></li>
+      {{!-- </div> --}}
+    {{!-- </div> --}}
+  </ul>
+  {{!-- The click listener on this doesn't work when it's in the nav above for some reason? --}}
+  <span id="settingsLink">Settings</span>
+    
+</div>
+ 
    <h1 class="offset-1">CREATE A NEW LEAGUE!</h1>
   </div>
 
