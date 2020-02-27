@@ -1,4 +1,5 @@
 let loggedin_id;
+let logout = $("#logout");
 
 $(document).ready(function() {
   // This file just does a GET request to figure out which user is logged in
@@ -18,56 +19,6 @@ $(document).ready(function() {
     localStorage.setItem("loggedin_id", loggedin_id);
     console.log(loggedin_id);
     console.log(typeof(loggedin_id));
-
-
-    // // get groups //
-    // $.get("/api/user_members/" + loggedin_id).then(function(data) {
-    //   console.log("below is the get groups data object");
-    //   console.log(data[0].Group.name);
-    //   window.location.replace("/members");
-
-    //   let newList = $("<ul>");
-    //   data.forEach(element => {
-    //     let newGroup = $("<li>");
-    //     newGroup.text(element.Group.name);
-    //     newList.append(newGroup);
-    //   });
-
-    //   $(".group-names").append(newList);
-    // });
-  });
-
-
-function getGroups() {
-  $.get("/api/user_members/" + loggedin_id).then(function(data) {
-    console.log("below is .get /api/user_members data return");
-    console.log(data);
-    window.location.replace("/members");
-    // $(".group-names").text(data);
-  });
-}
-
-
-
-function getPicks() {
-  $.get("/api/user_picks/" + loggedin_id).then(function(data) {
-    console.log(data);
-    let newList = $("<ul>");
-    data.forEach(element => {
-      let newLi = $("<li>");
-      if(element.prediction)
-        $(newLi).text(`Week ${element.week}, Game ${element.game_number}: Home winner`);
-      else
-        $(newLi).text(`Week ${element.week}, Game ${element.game_number}: Away winner`);
-
-      $(newList).append(newLi);
-    });
-
-    $("#picks-list").append("Predictions");
-    $("#picks-list").append(newList);
-
-  })
-}
 
 
 function setName() {
@@ -136,4 +87,14 @@ $(document).on("click", "#newGroup-btn", function() {
     console.log("get request sent to redirect to create league page")
   })
 })
+
+  })
+
+  $(document).on("click", "#logout", function() {
+    console.log("logout button works!")
+    $.get("/logout", function (req) {
+      console.log("logged out");
+      window.location = "/login";
+    })
+  })
 })

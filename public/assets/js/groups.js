@@ -42,5 +42,13 @@ $(document).ready(function () {
                 })
                
             })
+
+            $(document).on("click", "#logout", function() {
+                console.log("logout button works!")
+                $.get("/logout", function (req) {
+                  console.log("logged out");
+                  window.location = "/login";
+                })
+              })
     })
 

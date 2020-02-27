@@ -1,11 +1,11 @@
 <body><div id="members-whole-page">
 
+<div class="jumbotron" id="jumbotron-members"> 
 <h1 id="welcome-header">Welcome, {{  displayname}}!</h1>
-<div class="jumbotron" id="jumbotron-members">    
   <ul class="nav justify-content-end">
     {{!-- <div class="container-fluid"> --}}
       {{!-- <div class="navbar-header"> --}}
-        <li class="nav-item"><a class="nav-link active" href="/logout">Logout</a></li>
+        <li class="nav-item"><a class="nav-link active" id="logout"  href="/logout">Logout</a></li>
       {{!-- </div> --}}
     {{!-- </div> --}}
   </ul>
@@ -13,6 +13,8 @@
   <span id="settingsLink">Settings</span>
     
 </div>
+  
+
 <div class="col-10 offset-1" id="body-box-members"> 
   {{!-- .col-10.offset-1#body-box-members --}}
 
