@@ -60,10 +60,10 @@ insert into picks (member_fk, week, game_number, prediction, createdAt, updatedA
 insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (16, 1, 2, true, now(), now());
 insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (16, 1, 3, true, now(), now());
 insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (16, 1, 4, true, now(), now());
-insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (2, 1, 1, true, now(), now());
-insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (2, 1, 2, false, now(), now());
-insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (2, 1, 3, false, now(), now());
-insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (2, 1, 4, true, now(), now());
+insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (1, 2, 1, true, now(), now());
+insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (1, 2, 2, false, now(), now());
+insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (1, 2, 3, false, now(), now());
+insert into picks (member_fk, week, game_number, prediction, createdAt, updatedAt) values (1, 2, 4, true, now(), now());
 
 -- week 1 results
 insert into results (week, game_number, winner, winner_name, loser_name, createdAt, updatedAt) values (1, 1, true, 'DC Defenders', 'Seattle Dragons', now(), now());

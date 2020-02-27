@@ -69,8 +69,8 @@ function dropdownClicked() {
             let idHomeString = "#gm" + i +"home";
             let idAwayString = "#gm" + i + "away";
 
-            $(idHomeString).text(element.home_name);
-            $(idAwayString).text(element.away_name);
+            $(idHomeString).html(`<div><img class="${element.home_name}">${element.home_name}</div>`);
+            $(idAwayString).html(`<div><img class="${element.away_name}">${element.away_name}</div>`);
 
             i++;
         });
