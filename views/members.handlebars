@@ -1,13 +1,17 @@
 <body><div id="members-whole-page">
 
 <div class="jumbotron" id="jumbotron-members"> 
-<h1 id="welcome-header">Welcome, {{  displayname}}!</h1>
+  <div class="d-flex flex-wrap-reverse">
+
 <!--Navbar-->
 <nav class="navbar black mb-4 col-10 offset-1 sam-style-navbar">
   <!-- Navbar brand -->
-  <a class="navbar-brand" href="#" style="visibility: hidden;"></a>
+  <a class="navbar-brand justify-content-start" href="#" style="visibility: hidden; width: 1px"></a>
+
+<h1 id="welcome-header" class="ml-auto">Welcome, {{  displayname}}!</h1>
+
   <!-- Collapse button -->
-  <button class="navbar-toggler second-button sam-style-navbar-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
+  <button class="navbar-toggler second-button sam-style-navbar-button d-flex ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
     aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
     <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
   </button>
@@ -16,7 +20,7 @@
     {{!-- This div added to move the drop down menu items down by 15px to clear the wecome-header comfortabley -Sam --}}
     <div style="visibility: hidden; height: 15px; "></div>
     <!-- Links -->
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav text-right">
       <li class="nav-item active justify-content-end">
         <a class="nav-link sam-navbar-link" href="/login">Members Page (Home)
         <span class="sr-only">(current)</span>
@@ -32,6 +36,7 @@
   </div>
 </nav>
 <!--/.Navbar-->
+</div>
 </div>{{!-- End of Jumbotron --}}
 
 <div class="col-10 offset-1" id="body-box-members"> 
@@ -63,6 +68,8 @@
       <button id="newGroup-btn" class="btn btn-primary">Click Here to Create a new League!</button>
     </div>
 
+<!-- This div below was meant to have the table where you show the high scores throughout the entire database so you can compare yourself to everyone else playing, whether or not they are in your league. -->
+<!--  <div id="allMembersResults"></div>  -->
 
 
     <div id="allMembersResults"></div>
