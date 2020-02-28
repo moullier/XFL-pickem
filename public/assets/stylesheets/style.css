@@ -81,12 +81,13 @@ table {
 }
 
 #welcome-header {
-  position: absolute;
+  /* position: absolute;
   margin-top: 10px;
-  width: 100%;
+  width: 100%; */
   text-align: center;
-  left: 0;
-  top: 20px;
+  flex-wrap: wrap;
+  /* left: 0;
+  top: 20px; */
 }
 
 /* Add in a media query here to make the welcome-header no longer Position: absolute so that things don't stack up on top of each other. */
@@ -240,7 +241,7 @@ table {
   }
 
   .sam-style-navbar {
-    text-align: right;
+    /* text-align: right; */
     font-size: larger;
     /* text-size-adjust: auto; */
     color: #000000;
@@ -256,3 +257,12 @@ table {
   border: 2px solid black;
   color: white;
 }
+
+/* Media queries below: */
+@media screen and (max-width: 800px){
+
+
+
+
+
+} /* End of media query width 800px */
