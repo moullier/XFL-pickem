@@ -166,7 +166,7 @@ function calculateWeeklyScores(memberID, userName, commissioner) {
     });
 }
 
-    /////  Add new members to group ///////
+    ///// Add new members to group ///////
     addMemberBtn.on("click", function () {
         console.log("new member button is working!");
         let newMemberEmail = $("#newMember-input").val().trim();
@@ -218,3 +218,11 @@ function calculateWeeklyScores(memberID, userName, commissioner) {
             })
     
 
+// Adding a click event listener to settingsLink
+$(document).on("click", "#settingsLink",  function() {
+
+    console.log("settings link is working");
+    $.get("/settings/" + loggedInUserID, function(req) {
+      window.location = "/settings/" + loggedInUserID;
+    });
+});

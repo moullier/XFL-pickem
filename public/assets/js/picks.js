@@ -238,12 +238,24 @@ function submitPicks() {
 
 
     }
-    $(document).on("click", "#logout", function() {
-        console.log("logout button works!")
-        $.get("/logout", function (req) {
-          console.log("logged out");
-          window.location = "/login";
-        })
-      })
+
 
 }
+
+
+$(document).on("click", "#logout", function() {
+    console.log("logout button works!")
+    $.get("/logout", function (req) {
+      console.log("logged out");
+      window.location = "/login";
+    })
+  })
+
+  // Adding a click event listener to settingsLink
+$(document).on("click", "#settingsLink",  function() {
+
+    console.log("settings link is working");
+    $.get("/settings/" + loggedInUserID, function(req) {
+      window.location = "/settings/" + loggedInUserID;
+    });
+});

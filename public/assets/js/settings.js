@@ -1,7 +1,9 @@
+let loggedInUserID;
+
 // on page load
 $(document).ready(function () {
 
-    let loggedInUserID = $("#groupHeader").attr("value");
+    loggedInUserID = $("#groupHeader").attr("value");
 
    $.get("/api/getallgroups/" + loggedInUserID).then(function(groupData) {
         console.log(groupData);
@@ -27,10 +29,25 @@ $(document).on("click", ".groupList", function () {
     let groupName = $(this).text();
     console.log(gid + " " + groupName);
 
-    if(window.confirm("Are you sure you want to leave " + groupName + "? Your picks and scores will be deleted as well.")) {
-        $.ajax({ url: '/api/delete_group/' + gid, method: 'DELETE', data:{}})
-        .then(function() {
-            location.reload();
-        });
-    }
+    $.get("/api/get_memberID/" + loggedInUserID + "/" + gid).then(function(memberData) {
+
+        let mid = memberData.id;
+        console.log("The memberID is " + mid);
+        if(window.confirm("Are you sure you want to leave " + groupName + "? Your picks and scores will be deleted as well.")) {
+            $.ajax({ url: '/api/delete_member/' + mid, method: 'DELETE', data:{}})
+            .then(function() {
+                location.reload();
+            });
+        }
+    });
 });
+
+
+// Adding a click event listener to settingsLink
+$(document).on("click", "#settingsLink",  function() {
+
+    console.log("settings link is working");
+    $.get("/settings/" + loggedin_id, function(req) {
+      window.location = "/settings/" + loggedin_id;
+    });
+  });
