@@ -69,8 +69,8 @@ function dropdownClicked() {
             let idHomeString = "#gm" + i +"home";
             let idAwayString = "#gm" + i + "away";
 
-            $(idHomeString).html(`<div>${element.home_name}<img class="${element.home_name}"></div>`);
-            $(idAwayString).html(`<div>${element.away_name}<img class="${element.away_name}"></div>`);
+            $(idHomeString).html(`<div style="font-weight: bolder">${element.home_name}<br><img class="${element.home_name}"></div>`);
+            $(idAwayString).html(`<div style="font-weight: bolder">${element.away_name}<br><img class="${element.away_name}"></div>`);
 
             i++;
         });
@@ -134,12 +134,15 @@ function resetPage() {
     console.log("picksEntered = ");
     console.log(picksEntered);
 
-    $("#gm1pick").css("background-color", "#ffffff");
+    $("#gm1pick").css("background-color", "unset");
     $("#gm2pick").css("background-color", "#dddddd");
-    $("#gm3pick").css("background-color", "#ffffff");
+    $("#gm3pick").css("background-color", "unset");
     $("#gm4pick").css("background-color", "#dddddd");
     for(let i = 1; i<5; i++) {
-        $(`#gm${i}pick`).css("text-decoration", "none");
+        
+        $(`#gm${i}pick`).css("font-weight", "bold");
+        // $(`#gm${i}pick`).css("text-decoration", "none");
+        
         $(`#gm${i}pick`).text("");
     }
 

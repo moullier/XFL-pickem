@@ -43,18 +43,18 @@
     {{!-- <div class="d-flex justify-content-center"></div> --}}
 
 <div class="row justify-content-center">
-    <h2>Welcome,&nbsp;<h2 value="{{groupID}}" id="groupTitle"> </h2></h2>        
+    <h2>Welcome back to the&nbsp;<h2 value="{{groupID}}" id="groupTitle"> </h2></h2>        
 </div> <br>
 
-<div class="row">
-    <div class="col-12 col-md-8 offset-md-2">
+<div class="row justify-content-center">
+    <div class="col-auto">
         <button id="makePicks-btn" class="btn btn-primary" value="{{groupID}}">Make Picks!</button>
     </div>
 </div> <br>
 
 <div class="row d-flex">
 
-    <div class="col-4 table-sams-styling" id="memberScoreList">
+    <div class="col-12 col-md-4 table-sams-styling" id="memberScoreList">
 <h3>Season Scores:</h3><br>
         <div class="d-flex justify-content-start">
             <table class="table table-bordered" id="table-total-score">       
@@ -70,7 +70,7 @@
         </div>
     </div>
 
-    <div class="col-8 table-sams-styling" id="memberScoresByWeek">
+    <div class="col-12 col-md-8 table-sams-styling" id="memberScoresByWeek">
 <h3>Correct Picks By Week</h3><br>
         <div class="table-responsive">
             <table class="table table-bordered">
