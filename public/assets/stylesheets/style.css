@@ -60,14 +60,14 @@ table {
   /* background-color: #e9eceff2; */
   background: linear-gradient(240deg, #e9eceff2, #577797d3) !important;;
 }
-
+/* 
 #members-whole-page {
   background-color: #808080;
   background-image: url("https://i.imgur.com/pGVDBDY.jpg");
   background-size: 40%;
   background-repeat: repeat;
   min-height: 100vh
-}
+} */
 
 #body-box-members {
   /* background-color: #ffffffd4; */
@@ -277,11 +277,40 @@ table {
   border: 2px solid #000000;
 } */
 
-/* Media queries below: */
-@media screen and (max-width: 800px){
+
+/* making the two tables on League page not overlap by increasing the padding dynamically. */
+@media screen and (max-width: 900px){
+  #memberScoresByWeek {
+    padding-left: calc(5vw);
+  }
+  .general-whole-page {
+    background-size: 60%;
+  }
+}
+@media screen and (max-width: 700px){
+  .general-whole-page{
+    background-size: 80%;
+  }
+}
+
+.picks-table-header {
+  background-color: #00000038;
+}
 
 
+/* 
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 
-
-} /* End of media query width 800px */
+tr:nth-child(even) {
+  background-color: #dddddd;
+} */
