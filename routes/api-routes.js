@@ -252,6 +252,33 @@ app.get("/api/get_memberID/:id/:gid", function(req, res) {
 });
 
 
+// Get route to return all groups belonging to a user
+app.get("/api/getallgroups/:uid", function(req, res) {
+  console.log("hit the getallgroups get route");
+
+  let uid = req.params.uid;
+  console.log("uid is " + uid);
+
+  db.Group.findAll({
+    include: [
+      {
+        model: db.Member, 
+        include: [
+            db.User
+        ],
+        where: {
+          UserId: uid
+        },
+      }
+    ]
+  }).then(function(dbGroup) {
+    res.json(dbGroup);
+  })
+});
+
+
+
+
 
 
 
@@ -354,15 +381,15 @@ app.get("/api/get_memberID/:id/:gid", function(req, res) {
 
   // DELETE ROUTES
 
-  app.delete("/api/delete_group/:id", function (req, res) {
+  app.delete("/api/delete_group/:gid", function (req, res) {
     console.log("Made it to delete group function");
 
     db.Group.destroy({
       where: {
-        id: req.params.id
+        id: req.params.gid
       }
-    }).then(function (dbPost) {
-      res.json(dbPost);
+    }).then(function (dbGroup) {
+      res.json(dbGroup);
     });
   });
 

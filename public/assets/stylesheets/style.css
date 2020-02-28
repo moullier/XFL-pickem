@@ -108,7 +108,11 @@ table {
   margin-top: 10px;
 }
 
-.fa-crown {
+.card {
+  margin-bottom: 10px;
+}
+
+.fa-crown, .fa-trash {
   margin-left: 10px;
 }
 
