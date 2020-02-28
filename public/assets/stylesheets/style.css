@@ -297,6 +297,10 @@ table {
   background-color: #00000038;
 }
 
+#login-jumbotron, #signup-jumbotron {
+  height: 160px;
+  padding-top: 38px;
+}
 
 /* 
 table {
