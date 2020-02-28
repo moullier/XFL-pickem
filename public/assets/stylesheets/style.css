@@ -28,7 +28,7 @@ table {
 }
 
 .general-whole-page {
-  background-color: aquamarine;
+  background-color: #808080;
   background-image: url("https://i.imgur.com/pGVDBDY.jpg");
   background-size: 40%;
   background-repeat: repeat;
@@ -48,7 +48,7 @@ table {
 /* end of general-  section */
 
 #members-page-body-tag {
-  background-color: aquamarine;
+  background-color: #808080;
   /* background-image: url("../img/backgroundAllTeams.jpg");
   background-size: cover;
   background-repeat: repeat;  */
@@ -62,7 +62,7 @@ table {
 }
 
 #members-whole-page {
-  background-color: aquamarine;
+  background-color: #808080;
   background-image: url("https://i.imgur.com/pGVDBDY.jpg");
   background-size: 40%;
   background-repeat: repeat;
@@ -92,7 +92,7 @@ table {
 /* Add in a media query here to make the welcome-header no longer Position: absolute so that things don't stack up on top of each other. */
 
 #groups-whole-page {
-  background-color: aquamarine;
+  background-color: #808080;
   background-image: url("https://i.imgur.com/pGVDBDY.jpg");
   background-size: 40%;
   background-repeat: repeat;
@@ -108,48 +108,52 @@ table {
   margin-top: 10px;
 }
 
-.fa-crown {
+.card {
+  margin-bottom: 10px;
+}
+
+.fa-crown, .fa-trash {
   margin-left: 10px;
 }
 
 /* Team logos for the picks page. */
 .Wildcats {
-  content: url(https://i.imgur.com/uS86SGg.jpg);
+  content: url(https://i.imgur.com/nqvKyKb.png);
   height: 10vw;
   width: auto;
 }
 .Guardians {
-  content: url(https://i.imgur.com/5rg5WiB.jpg);
+  content: url(https://i.imgur.com/NYnqb0L.png);
   height: 10vw;
   width: auto;
 }
 .Vipers {
-  content: url(https://i.imgur.com/YROJvOi.jpg);
+  content: url(https://i.imgur.com/pzKmvpo.png);
   height: 10vw;
   width: auto;
 }
 .Defenders {
-  content: url(https://i.imgur.com/82RdgsP.jpg);
+  content: url(https://i.imgur.com/BNRmjjc.png);
   height: 10vw;
   width: auto;
 }
 .Roughnecks {
-  content: url(https://i.imgur.com/uxIFVZU.jpg  );
+  content: url(https://i.imgur.com/8T77XAZ.png);
   height: 10vw;
   width: auto;
 }
 .BattleHawks {
-  content: url(https://i.imgur.com/8qrn27H.jpg);
+  content: url(https://i.imgur.com/nXfAJf5.png);
   height: 10vw;
   width: auto;
 }
 .Renegades {
-  content: url(https://i.imgur.com/jI2j7lX.jpg);
+  content: url(https://i.imgur.com/3bl1Odz.png);
   height: 10vw;
   width: auto;
 }
 .Dragons {
-  content: url(https://i.imgur.com/Aj3ySLK.jpg);
+  content: url(https://i.imgur.com/pWgSVBd.png);
   height: 10vw;
   width: auto;
 }
@@ -250,3 +254,9 @@ table {
     font-weight: 600;
     color: #000000bc;
   }
+
+.btn {
+  background-color: #302f86eb;
+  border: 2px solid black;
+  color: white;
+}
