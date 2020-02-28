@@ -393,7 +393,17 @@ app.get("/api/getallgroups/:uid", function(req, res) {
     });
   });
 
+  app.delete("/api/delete_member/:mid", function (req, res) {
+    console.log("Made it to delete member function");
 
+    db.Member.destroy({
+      where: {
+        id: req.params.mid
+      }
+    }).then(function (dbMember) {
+      res.json(dbMember);
+    });
+  });
 
   // PUT ROUTES
 
