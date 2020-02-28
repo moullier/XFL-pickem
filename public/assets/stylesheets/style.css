@@ -1,7 +1,7 @@
-form.signup,
+/* form.signup,
 form.login {
   margin-top: 50px;
-}
+} */
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -24,7 +24,7 @@ table {
   padding-top: 32px;
   padding-bottom: 32px;
   /* background-color: #e9eceff2; */
-  background: linear-gradient(240deg, #e9eceff2, #577797d3) !important;;
+  background: linear-gradient(240deg, #e9ecefed, #577797ed) !important;;
 }
 
 .general-whole-page {
@@ -37,7 +37,7 @@ table {
 
 .general-body-box {
   /* background-color: #ffffffd4; */
-  background: linear-gradient(180deg, #e9eceff2, #9bc9f6d3) !important;
+  background: linear-gradient(180deg, #e9ecefed, #9bc9f6ed) !important;
   padding: 30px;
 }
 
@@ -261,6 +261,21 @@ table {
   border: 2px solid black;
   color: white;
 }
+
+#login-body-box, #signup-body-box, #groups-body-box {
+  font-size: larger;
+  font-weight: 500;
+  background: linear-gradient(180deg, #e9ecefed, #9bc9f6ed) !important;
+}
+
+#form-control {
+  font-size: larger;
+}
+
+/* .table-sams-styling {
+  padding: 1vw;
+  border: 2px solid #000000;
+} */
 
 /* Media queries below: */
 @media screen and (max-width: 800px){
