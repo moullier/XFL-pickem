@@ -38,16 +38,10 @@
 
 <div class="col-10 offset-1 general-body-box" id="settings-body-box"> 
 
-    <div id="group-info">
-      {{#each groups}}
-      <h1 class="group-name">{{this.[0]}}</h1>
-      <button class="btn btn-primary league-btn" data-id="{{this.[1]}}" data-name="{{this.[0]}}">View League</button>
-      {{/each}}
+    <div>
+      <h2 id="groupHeader" value="{{userID}}">Leave a Group</h2>
+      <h4><ul id="allGroups"></ul></h4>
     </div>
-
-
-
-    <div id="allMembersResults"></div>
 
 </div>
 <div class="general-bottom-spacer"></div>
