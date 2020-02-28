@@ -25,6 +25,8 @@ Maria Moullier, Lynn O'Neill, and Sam Wardell
 
 Launch: This website can be launched in a browser.
 
+![image of picks page](assets/img/ProjectTwoScreenShot.PNG)
+
 # To Do
 
 (3) Settings page with admin functionality
