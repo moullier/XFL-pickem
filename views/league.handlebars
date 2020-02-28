@@ -1,12 +1,17 @@
 <body><div class="general-whole-page">
-    <div class="jumbotron general-jumbotron" id="league-jumbotron">    
-<h1 id="welcome-header">XFL Pick-Em!</h1>
+    <div class="jumbotron general-jumbotron" id="league-jumbotron">
+     <div class="d-flex flex-wrap-reverse">
+   
 <!--Navbar-->
 <nav class="navbar black mb-4 col-10 offset-1 sam-style-navbar">
   <!-- Navbar brand -->
-  <a class="navbar-brand" href="#" style="visibility: hidden;"></a>
+  <a class="navbar-brand justify-content-start" href="#" style="visibility: hidden; width: 1px"></a>
+
+<!-- had to move the welcome-header here so that it wrapped in the center of the page correctly as the screen size changed -sam -->
+<h1 id="welcome-header" class="ml-auto">XFL Pick-Em!</h1>
+
   <!-- Collapse button -->
-  <button class="navbar-toggler second-button sam-style-navbar-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
+  <button class="navbar-toggler second-button sam-style-navbar-button d-flex ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
     aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
     <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
   </button>
@@ -15,7 +20,7 @@
     {{!-- This div added to move the drop down menu items down by 15px to clear the wecome-header comfortabley -Sam --}}
     <div style="visibility: hidden; height: 15px; "></div>
     <!-- Links -->
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav text-right">
       <li class="nav-item active justify-content-end">
         <a class="nav-link sam-navbar-link" href="/login">Members Page (Home)
         <span class="sr-only">(current)</span>
@@ -30,8 +35,9 @@
     </ul>
   </div>
 </nav>
-</div>  <!--/.Navbar-->
-</div>  <!-- End of Jumbotron -->
+<!--/.Navbar-->
+</div>
+ </div>{{!--end of Jumbotron--}}
 
 <div class="container general-body-box">
     <div class="row d-flex justify-content-center">
