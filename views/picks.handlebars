@@ -1,0 +1,146 @@
+<body><div class="general-whole-page">
+    <div class="jumbotron general-jumbotron" id="jumbotron-picks"> 
+         <div class="d-flex flex-wrap-reverse">
+
+<!--Navbar-->
+<nav class="navbar black mb-4 col-10 offset-1 sam-style-navbar">
+  <!-- Navbar brand -->
+  <a class="navbar-brand justify-content-start" href="#" style="visibility: hidden; width: 1px"></a>
+
+  <h1 id="welcome-header" class="ml-auto">XFL Pick'Em!</h1>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler second-button sam-style-navbar-button d-flex ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
+    aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
+  </button>
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent23">
+    {{!-- This div added to move the drop down menu items down by 15px to clear the wecome-header comfortabley -Sam --}}
+    <div style="visibility: hidden; height: 15px; "></div>
+    <!-- Links -->
+    <ul class="navbar-nav text-right">
+      <li class="nav-item active justify-content-end">
+        <a class="nav-link sam-navbar-link" href="/login">Members Page (Home)
+        <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active sam-navbar-link" id="settingsLink"  href="#">Settings</a></li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active sam-navbar-link" id="logout"  href="/logout">Logout</a></li>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar-->
+</div>
+</div>
+  
+  <div class="container general-body-box col-12 col-sm-11 offset-sm-0.5" id="picks-body-box">
+    <h1>Make your picks:</h1>
+    <h2 value="{{groupID}}" id="groupTitle"></h2>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Week
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button id="wk1btn" value="1" class="dropdown-item" type="button">Week 1</button>
+                <button id="wk2btn" value="2" class="dropdown-item" type="button">Week 2</button>
+                <button id="wk3btn" value="3" class="dropdown-item" type="button">Week 3</button>
+                <button id="wk4btn" value="4" class="dropdown-item" type="button">Week 4</button>
+                <button id="wk5btn" value="5" class="dropdown-item" type="button">Week 5</button>
+                <button id="wk6btn" value="6" class="dropdown-item" type="button">Week 6</button>
+                <button id="wk7btn" value="7" class="dropdown-item" type="button">Week 7</button>
+                <button id="wk8btn" value="8" class="dropdown-item" type="button">Week 8</button>
+                <button id="wk9btn" value="9" class="dropdown-item" type="button">Week 9</button>
+                <button id="wk10btn" value="10" class="dropdown-item" type="button">Week 10</button>
+            </div>
+        </div>
+        <br />
+        {{!-- Because I finally got that Nav bar working, I don't think we need this link in the middle of the page any longer. -sam --}}
+        {{!-- <p>Or return to members page <a href="/login">here</a></p> --}}
+      </div>
+    </div>
+    <div class="row" id="weekDiv">
+        <div class="col-12">
+            <h2><span id="weekTitle">Week #</span><span id="lockStatus"></span></h2>
+        </div>
+        <div class="col-12" id="picks-table">
+
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                <th class="picks-table-header"scope="col">Game</th>
+                <th class="picks-table-header"scope="col">Home Team</th>
+                <th class="picks-table-header"scope="col">Away Team</th>
+                <th class="picks-table-header"scope="col">Your Pick</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th class="text-center" style="font-size: xx-large;" scope="row">1</th>
+                <td>
+                    <span id="gm1home"></span>
+                    <button type="button" game="1" pick="home" class="pick-btn btn btn-primary btn-sm">Pick</button>
+                </td>
+                <td>
+                    <span id="gm1away"></span>
+                    <button type="button" game="1" pick="away" class="pick-btn btn btn-primary btn-sm">Pick</button>
+                </td>
+                <td id="gm1pick"></td>
+                </tr>
+                <tr>
+                <th class="text-center" style="font-size: xx-large;" scope="row">2</th>
+                <td>
+                    <span id="gm2home"></span>
+                    <button type="button" game="2" pick="home" class="pick-btn btn btn-primary btn-sm">Pick</button>
+                </td>
+                <td>
+                    <span id="gm2away"></span>
+                    <button type="button" game="2" pick="away" class="pick-btn btn btn-primary btn-sm">Pick</button>                   
+                </td>
+                <td id="gm2pick"></td>
+                </tr>
+                <tr>
+                <th class="text-center" style="font-size: xx-large;" scope="row">3</th>
+                <td>
+                    <span id="gm3home"></span>
+                    <button type="button" game="3" pick="home" class="pick-btn btn btn-primary btn-sm">Pick</button>                    
+                </td>
+                <td>
+                    <span id="gm3away"></span>
+                    <button type="button" game="3" pick="away" class="pick-btn btn btn-primary btn-sm">Pick</button>                        
+                </td>
+                <td id="gm3pick"></td>
+                </tr>
+                <tr>
+                <th class="text-center" style="font-size: xx-large;" scope="row">4</th>
+                <td>
+                    <span id="gm4home"></span>
+                    <button type="button" game="4" pick="home" class="pick-btn btn btn-primary btn-sm">Pick</button>   
+                </td>
+                <td>
+                    <span id="gm4away"></span>
+                    <button type="button" game="4" pick="away" class="pick-btn btn btn-primary btn-sm">Pick</button>       
+                </td>
+                <td id="gm4pick"></td>
+                </tr>
+            </tbody>
+            </table>
+
+            <button type="button" id="submit-btn" class="btn btn-lg">Submit Picks</button>
+            <span id="addPicksResult"></span>
+          
+      </div>
+    </div>
+  </div>
+<div class="general-bottom-spacer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="../assets/js/picks.js"></script>
+
+</div></body>

@@ -1,0 +1,119 @@
+<body><div class="general-whole-page">
+    <div class="jumbotron general-jumbotron" id="league-jumbotron">
+     <div class="d-flex flex-wrap-reverse">
+   
+<!--Navbar-->
+<nav class="navbar black mb-4 col-10 offset-1 sam-style-navbar">
+  <!-- Navbar brand -->
+  <a class="navbar-brand justify-content-start" href="#" style="visibility: hidden; width: 1px"></a>
+
+<!-- had to move the welcome-header here so that it wrapped in the center of the page correctly as the screen size changed -sam -->
+<h1 id="welcome-header" class="ml-auto">XFL Pick'Em!</h1>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler second-button sam-style-navbar-button d-flex ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
+    aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
+  </button>
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent23">
+    {{!-- This div added to move the drop down menu items down by 15px to clear the wecome-header comfortabley -Sam --}}
+    <div style="visibility: hidden; height: 15px; "></div>
+    <!-- Links -->
+    <ul class="navbar-nav text-right">
+      <li class="nav-item active justify-content-end">
+        <a class="nav-link sam-navbar-link" href="/login">Members Page (Home)
+        <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active sam-navbar-link" id="settingsLink"  href="#">Settings</a></li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active sam-navbar-link" id="logout"  href="/logout">Logout</a></li>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar-->
+</div>
+ </div>{{!--end of Jumbotron--}}
+
+<div class="container col-11 offset-0.5 general-body-box flex-wrap-start" id="league-body-box">
+    {{!-- <div class="d-flex justify-content-center"></div> --}}
+
+<div class="row justify-content-center">
+    <h2>Welcome back to the&nbsp;<h2 value="{{groupID}}" id="groupTitle"> </h2></h2>        
+</div> <br>
+
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <button id="makePicks-btn" class="btn btn-primary" value="{{groupID}}">Make Picks!</button>
+    </div>
+</div> <br>
+
+<div class="row d-flex">
+
+    <div class="col-12 col-md-4 table-sams-styling" id="memberScoreList">
+<h3>Season Scores:</h3><br>
+        <div class="d-flex justify-content-start">
+            <table class="table table-bordered" id="table-total-score">       
+                <thead>
+                    <tr>
+                        <th scope="col">Member</th>
+                        <th scope="col" class="">Total Score</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-8 table-sams-styling" id="memberScoresByWeek">
+<h3>Correct Picks By Week</h3><br>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th scope="col" class="text-nowrap">Member</th>
+                    <th scope="col" class="text-nowrap">Week 1</th>
+                    <th scope="col" class="text-nowrap">Week 2</th>
+                    <th scope="col" class="text-nowrap">Week 3</th>
+                    <th scope="col" class="text-nowrap">Week 4</th>
+                    <th scope="col" class="text-nowrap">Week 5</th>
+                    <th scope="col" class="text-nowrap">Week 6</th>
+                    <th scope="col" class="text-nowrap">Week 7</th>
+                    <th scope="col" class="text-nowrap">Week 8</th>
+                    <th scope="col" class="text-nowrap">Week 9</th>
+                    <th scope="col" class="text-nowrap">Week 10</th>
+                    </tr>
+                </thead>
+                <tbody id="weeklyTableBody" class="text-nowrap">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-12 col-md-8 mt-100">
+        <h4>Enter a user's email address to add them to this group</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <input type="text" id="newMember-input">
+        <button id="addMember-btn" class="btn btn-primary">Add Members</button>
+    </div>
+        
+</div>
+
+</div> <!-- end of body-box -->
+<div class="general-bottom-spacer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/league.js"></script>
+</div>
+</body>

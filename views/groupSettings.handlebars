@@ -1,0 +1,52 @@
+<body><div class="general-whole-page" id="group-settings-whole-page">
+<div class="general-jumbotron jumbotron" id="group-settings-jumbotron">
+<div class="d-flex flex-wrap-reverse">
+ 
+<!--Navbar-->
+<nav class="navbar black mb-4 col-10 offset-1 sam-style-navbar">
+  <!-- Navbar brand -->
+  <a class="navbar-brand justify-content-start" href="#" style="visibility: hidden; width:1px"></a>
+
+ <h1 id="welcome-header" class="ml-auto">XFL Pick'Em!</h1>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler second-button sam-style-navbar-button d-flex ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
+    aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
+  </button>
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent23">
+    {{!-- This div added to move the drop down menu items down by 15px to clear the wecome-header comfortabley -Sam --}}
+    <div style="visibility: hidden; height: 15px; "></div>
+    <!-- Links -->
+    <ul class="navbar-nav text-right">
+      <li class="nav-item active justify-content-end">
+        <a class="nav-link sam-navbar-link" href="/login">Members Page (Home)
+        <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active sam-navbar-link" id="settingsLink"  href="/group-settings">Settings</a></li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active sam-navbar-link" id="logout"  href="/logout">Logout</a></li>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar--> 
+</div>
+</div>
+<div class="general-body-box" id="group-settings-body-box">
+
+<div class="row"><h1 class="mx-auto">This is the group settings page... which is unused I think. -Sam</h1></div>
+{{!-- put main content in here -sam --}}
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{{!-- the script tag below was borrowed from the league.handlebars page. I assume the groupSettings page would get it's own JS file if we end up using it. Therefore nothing changed, but commented out. -Sam --}}
+{{!-- <script type="text/javascript" src="../assets/js/league.js"></script> --}}
+
+<div class="general-bottom-spacer"></div>
+</div></body>
