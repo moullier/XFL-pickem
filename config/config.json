@@ -1,8 +1,8 @@
 {
     "development": {
       "username": "root",
-      "password": "rootroot",
-      "database": "games_db",
+      "password": "bobo1029",
+      "database": "passport_demo",
       "host": "127.0.0.1",
       "dialect": "mysql"
     },
@@ -14,10 +14,10 @@
       "dialect": "mysql"
     },
     "production": {
-      "username": "root",
-      "password": null,
-      "database": "database_production",
-      "host": "127.0.0.1",
+      "username": "cu18nwaph6sd1gg8",
+      "password": "z8al1o0mouvz3ed2",
+      "database": "n3kqo870sktfmurf",
+      "host": "kil9uzd3tgem3naa.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       "dialect": "mysql"
     }
   }
