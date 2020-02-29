@@ -302,6 +302,21 @@ table {
   padding-top: 38px;
 }
 
+@media screen and (max-width: 520px){
+#picks-body-box {
+  font-size: 12px !important;
+
+}}
+
+@media screen and (max-width: 420px){
+  #picks-body-box {
+    font-size: 10px !important;
+  }
+
+  .btn-sm {
+    padding: 1px;
+  }
+}
 /* 
 table {
   font-family: arial, sans-serif;
