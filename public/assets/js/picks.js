@@ -259,3 +259,12 @@ $(document).on("click", "#settingsLink",  function() {
       window.location = "/settings/" + loggedInUserID;
     });
 });
+
+// Adding a click event listener to settingsLink
+$(document).on("click", "#membersLink",  function() {
+
+    console.log("settings link is working");
+    $.get("/members/", function(req) {
+      window.location = "/members/";
+    });
+});
