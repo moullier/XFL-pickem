@@ -101,11 +101,13 @@ function dropdownClicked() {
                     if(week_locked) {
                         console.log(data);
                         let winner = data[element.game_number - 1].winner;
-                        if(prediction == winner) {
-                            $(pickString).css("background-color", "#90ee90");
-                        } else {
-                            $(pickString).css("background-color", "#ffcccb");
-                            $(pickString).css("text-decoration", "line-through");
+                        if (data[element.game_number - 1].game_occurred) {
+                            if(prediction == winner) {
+                                $(pickString).css("background-color", "#90ee90");
+                            } else {
+                                $(pickString).css("background-color", "#ffcccb");
+                                $(pickString).css("text-decoration", "line-through");
+                            }
                         }
                     }
 
@@ -138,10 +140,12 @@ function resetPage() {
     $("#gm2pick").css("background-color", "#dddddd");
     $("#gm3pick").css("background-color", "unset");
     $("#gm4pick").css("background-color", "#dddddd");
+    
     for(let i = 1; i<5; i++) {
+        // this line removes the strike-through from wrong picks
+        $(`#gm${i}pick`).css("text-decoration", "none");
         
         $(`#gm${i}pick`).css("font-weight", "bold");
-        // $(`#gm${i}pick`).css("text-decoration", "none");
         
         $(`#gm${i}pick`).text("");
     }
@@ -235,11 +239,7 @@ function submitPicks() {
 
             $("#addPicksResult").text("Picks updated successfully for week " + current_week)
         })
-
-
     }
-
-
 }
 
 
@@ -260,7 +260,7 @@ $(document).on("click", "#settingsLink",  function() {
     });
 });
 
-// Adding a click event listener to settingsLink
+// Adding a click event listener to membersLink
 $(document).on("click", "#membersLink",  function() {
 
     console.log("settings link is working");
