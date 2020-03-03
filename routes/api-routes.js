@@ -57,7 +57,8 @@ module.exports = function (app) {
       res.json({
         email: req.user.email,
         id: req.user.id,
-        display_name: req.user.display_name
+        display_name: req.user.display_name,
+        admin: req.user.admin
       });
     }
   });

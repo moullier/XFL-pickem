@@ -1,5 +1,6 @@
 let loggedin_id;
 let logout = $("#logout");
+let adminStatus = false;
 
 $(document).ready(function() {
   // This file just does a GET request to figure out which user is logged in
@@ -7,6 +8,20 @@ $(document).ready(function() {
   $.get("/api/user_data").then(function(data) {
     console.log("below is the user data from members.js");
     console.log(data);
+
+    // check if user is an admin, if so add the link to admin settings in the menu
+    adminStatus = data.admin;
+    if(adminStatus) {
+      let newAdminMenu = $("<li>");
+      newAdminMenu.addClass("nav-item");
+      let newAdminItem = $("<span>");
+      newAdminItem.text("Admin Settings");
+      newAdminItem.addClass("nav-link active sam-navbar-link");
+      newAdminItem.attr("id", "adminSettingsLink");
+      newAdminMenu.append(newAdminItem);
+      newAdminMenu.insertAfter("#settingsItem");
+    }
+
     $(".member-email").text(data.email);
     if(data.display_name != undefined){
       $(".member-name").text(data.display_name);
@@ -20,29 +35,6 @@ $(document).ready(function() {
     console.log(loggedin_id);
     console.log(typeof(loggedin_id));
 
-
-function setName() {
-  let newDisplayName = $("#name_field").val().trim();
-  console.log(newDisplayName);
-
-  let url = "/api/update_user_dn/" + loggedin_id;
-  console.log(url);
-  $.ajax({
-    url: url,
-    type: "PUT",
-    contentType: 'application/json',
-    dataType: "json",
-    data: { 
-      "display_name": newDisplayName
-    },
-    success: function (data) {
-      console.log("Success");
-    }
-    , fail: function () {
-      console.log("Failure");
-    }
-  });
-}
 
 // Adding a click event listener to settingsLink
 $(document).on("click", "#settingsLink",  function() {
@@ -99,11 +91,43 @@ $(document).on("click", "#newGroup-btn", function() {
   })
 })
 
-// Adding a click event listener to settingsLink
+// Adding a click event listener to membersLink
 $(document).on("click", "#membersLink",  function() {
 
-  console.log("settings link is working");
+  console.log("members link is working");
   $.get("/members/", function(req) {
     window.location = "/members/";
+  });
+});
+
+function setName() {
+  let newDisplayName = $("#name_field").val().trim();
+  console.log(newDisplayName);
+
+  let url = "/api/update_user_dn/" + loggedin_id;
+  console.log(url);
+  $.ajax({
+    url: url,
+    type: "PUT",
+    contentType: 'application/json',
+    dataType: "json",
+    data: { 
+      "display_name": newDisplayName
+    },
+    success: function (data) {
+      console.log("Success");
+    }
+    , fail: function () {
+      console.log("Failure");
+    }
+  });
+}
+
+// Adding a click event listener to membersLink
+$(document).on("click", "#adminSettingsLink",  function() {
+
+  console.log("adminSettingsLink");
+  $.get("/adminSettings/", function(req) {
+    window.location = "/adminSettings/";
   });
 });

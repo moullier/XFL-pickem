@@ -1,6 +1,4 @@
--- drop database if exists passport_demo;
--- create database passport_demo;
-use database passport_demo;
+use database pickemtest;
 
 insert into `groups` (`name`, createdAt, updatedAt) values ("Group #1", now(), now());
 insert into `groups` (`name`, createdAt, updatedAt) values ("Group #2", now(), now());

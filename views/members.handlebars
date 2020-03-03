@@ -20,13 +20,13 @@
     {{!-- This div added to move the drop down menu items down by 15px to clear the wecome-header comfortabley -Sam --}}
     <div style="visibility: hidden; height: 15px; "></div>
     <!-- Links -->
-    <ul class="navbar-nav text-right">
+    <ul class="navbar-nav text-right" id="navbarList">
       <li class="nav-item active justify-content-end">
         <a class="nav-link sam-navbar-link" id="membersLink" href="#">Members Page (Home)
         <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" id="settingsItem">
         <a class="nav-link active sam-navbar-link" id="settingsLink"  href="#">Settings</a></li>
       </li>
       <li class="nav-item">
@@ -66,7 +66,7 @@
     </div>
 
     <div>
-      <button id="newGroup-btn" class="btn btn-primary">Click Here to Create a new League!</button>
+      <button id="newGroup-btn" class="btn btn-primary">Create a new League!</button>
     </div>
 
 <!-- This div below was meant to have the table where you show the high scores throughout the entire database so you can compare yourself to everyone else playing, whether or not they are in your league. -->

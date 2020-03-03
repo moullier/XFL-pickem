@@ -1,9 +1,15 @@
+* {
+  font-family: 'Roboto';
+}
+
+
 /* form.signup,
 form.login {
   margin-top: 50px;
 } */
 table {
-    font-family: arial, sans-serif;
+    /* font-family: arial, sans-serif; */
+    font-family: 'Roboto';
     border-collapse: collapse;
     width: 100%;
   }
@@ -116,6 +122,8 @@ table {
 .fa-crown, .fa-trash {
   margin-left: 10px;
 }
+
+
 
 /* Team logos for the picks page. */
 .Wildcats {

@@ -34,6 +34,8 @@ module.exports = function (app) {
     console.log("/members html route FIRING");
     console.log("Logging user id as ");
     console.log(req.user.id);
+    // console.log("req.user looks like: ");
+    // console.log(req.user);
 
     if (!req.user) {
       // The user is not logged in, send back an empty object
@@ -76,26 +78,37 @@ module.exports = function (app) {
   })
 
 
-  // Route to redirct user to /groups page to create new league //
-  app.get("/groups", function (req, res) {
+  // Route to redirect user to /groups page to create new league
+  app.get("/groups", isAuthenticated, function (req, res) {
     console.log("GET request to take user to page to create new league(/groups) is FIRING!")
     res.render("groups");
   });
 
-  app.get("/league/", function (req, res) {
+  app.get("/league/", isAuthenticated, function (req, res) {
     console.log("request received to render league page");
     res.render("league");
   })
 
-  // Route to load picks page -- we could pass in the week here and preload the requested
-  // (or current?) week possibly?
+  // Route to load the adminSettings page
+  app.get("/adminSettings/", isAuthenticated, function (req, res) {
+    console.log("request received to render adminSettings page");
+    if(req.user.admin) {
+      return res.render("adminSettings");
+    } else {
+      return {};
+    }
+      
+  })
+
+
+
+  // Route to load picks page
   app.get("/picks", function (req, res) {
     res.render("picks", {});
   });
 
 
-  // Route to load picks page -- we could pass in the week here and preload the requested
-  // (or current?) week possibly?
+  // Route to load picks page -- passing in the group id
   app.get("/picks/:gid", function (req, res) {
     console.log("(from /picks/:gid) The id passed in to render the page is " + req.params.gid);
 
