@@ -23,6 +23,10 @@ This website utilizes HTML, CSS, Bootstrap, JavaScript, jQuery, MySQL database, 
 
 Launch: This website can be launched in a browser.
 
+## Resources
+
+American Football Vector Image by Vecteezy ("https://www.vecteezy.com/free-vector/american-football")
+
 ## Credits
 
 This project was created by the following collaborators:
