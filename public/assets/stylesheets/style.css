@@ -299,7 +299,7 @@ table {
 
 #login-jumbotron, #signup-jumbotron {
   height: 160px;
-  padding-top: 38px;
+  padding-top: 20px;
 }
 
 @media screen and (max-width: 520px){
