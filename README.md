@@ -1,6 +1,6 @@
 # XFL Pick'Em!
 
-https://morning-dawn-76670.herokuapp.com/
+https://xfl-pickem.herokuapp.com/
 
 ## Introduction:
 
@@ -33,4 +33,4 @@ This project was created by the following collaborators:
 
 Maria Francis-Moullier, Lynn O'Neill, and Sam Wardell
 
-https://morning-dawn-76670.herokuapp.com/
+https://xfl-pickem.herokuapp.com/
