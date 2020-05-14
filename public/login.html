@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Login Page</title>
+  <title>XFL Pick'Em - Login Page</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -23,6 +23,7 @@
 <body><div class="general-whole-page" id="login-whole-page">
 
 <div class="general-jumbotron jumbotron" id="login-jumbotron">
+  <button class="btn" id="help-btn" data-toggle="modal" data-target="#howToModal">?</button>
   <h1 id="welcome-header" class="mx-auto"><img src="assets/img/xfl_logo2.png" alt="XFL Pick'Em"></h1>
 
 </div> <!-- end of Jumbotron -->
@@ -54,6 +55,32 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/js/login.js"></script>
 
-</div></body>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="howToModal" tabindex="-1" role="dialog" aria-labelledby="howToModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="howToModalLabel">How to Play</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>To play XFL Pick'Em, you'll need to create a username, or use our guest login and password.</p>
+        <p>Guest Username: guest@test.com</p>
+        <p>Guest Password: password</p>
+        <p>Once you log in, you can see the leagues that you are a member of or create a new league.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
 
 </html>
